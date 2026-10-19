@@ -1,0 +1,597 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="description" content="Moviwi 首发营销投入、渠道利润及后续经营回收测算。调整参数，即时比较方案。">
+  <title>Moviwi · 营销经营测算</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2218%22%20fill%3D%22%23102b3c%22%2F%3E%3Cpath%20d%3D%22M13%2043V25h7v3c4-5%2011-5%2015%200%205-6%2016-5%2016%205v10h-8V33c0-4-6-4-6%200v10h-8V33c0-4-8-4-8%200v10z%22%20fill%3D%22%23fff%22%2F%3E%3Ccircle%20cx%3D%2249%22%20cy%3D%2217%22%20r%3D%225%22%20fill%3D%22%238fd7c3%22%2F%3E%3C%2Fsvg%3E%0A">
+  <style>:root{--ink:#142f40;--muted:#73818e;--line:#e4e9ee;--bg:#f5f7fa;--navy:#102b3c;--blue:#366dd9;--teal:#18846a;--mint:#e9f5f0;--red:#c75555;--red-bg:#fcf0f0;--amber:#ad741f;--radius:16px;font-family:Inter,"Microsoft YaHei","PingFang SC",system-ui,sans-serif;color:var(--ink);background:var(--bg);font-size:14px;font-synthesis:none}
+*{box-sizing:border-box}body{margin:0}button,input,select{font:inherit}button,a,input,select,summary{-webkit-tap-highlight-color:transparent}button{cursor:pointer}button:disabled{opacity:.45;cursor:not-allowed}button:focus-visible,a:focus-visible,input:focus-visible,summary:focus-visible,select:focus-visible{outline:3px solid #91b2f1;outline-offset:3px}a{color:var(--blue)}[hidden]{display:none!important}button{color:inherit}svg{font-family:inherit}input{font-variant-numeric:tabular-nums}input[type=number]{appearance:textfield;-moz-appearance:textfield}input::-webkit-inner-spin-button,input::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}button svg{width:16px;height:16px;vertical-align:middle;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.topbar{height:76px;position:sticky;top:0;z-index:30;display:flex;align-items:center;justify-content:space-between;padding:0 30px;background:#fff;border-bottom:1px solid var(--line)}.brand{display:flex;gap:11px;align-items:center;text-decoration:none;color:var(--ink)}.brand-mark{width:35px;height:35px;border-radius:11px;background:var(--navy);color:white;line-height:30px;font-size:32px;font-weight:800;text-align:center;position:relative;letter-spacing:-4px;padding-right:5px}.brand-mark>span{position:absolute;right:5px;top:5px;width:6px;height:6px;border-radius:50%;background:#93dcc7}.brand-name{font-size:23px;letter-spacing:-1px;font-weight:750;display:flex;align-items:center;gap:15px}.brand-divider{height:23px;width:1px;background:#dce3e9}.brand-product{font-size:14px;letter-spacing:.6px;font-weight:550;color:#617486}.top-actions{display:flex;gap:10px;align-items:center}.button{height:37px;padding:0 14px;display:inline-flex;align-items:center;justify-content:center;gap:7px;border:1px solid var(--line);background:white;border-radius:9px;font-weight:550;font-size:12px;white-space:nowrap;transition:background .15s,transform .15s;text-decoration:none}.button:hover{background:#f0f4f7}.button:active{transform:translateY(1px)}.button-primary{background:var(--navy);border-color:var(--navy);color:#fff}.button-primary:hover{background:#1d4156}.button-quiet{color:#586d7e}.save-status{display:flex;align-items:center;gap:7px;font-size:11px;color:#758591;margin-right:6px}.status-dot{width:6px;height:6px;border-radius:50%;background:#34a880}.save-status.failed{color:var(--amber)}.save-status.failed .status-dot{background:#db982f}.export-menu{position:relative}.export-menu>summary{list-style:none;cursor:pointer}.export-menu>summary::-webkit-details-marker{display:none}.menu-popover{position:absolute;right:0;top:47px;background:white;box-shadow:0 10px 38px #1632461c;border:1px solid var(--line);padding:6px;border-radius:12px;min-width:174px;z-index:100}.menu-popover>button{display:block;width:100%;text-align:left;border:0;background:white;padding:11px;border-radius:7px;font-size:12px}.menu-popover>button:hover{background:#f1f5fa}
+.workspace{display:grid;grid-template-columns:312px minmax(0,1fr);align-items:start}.sidebar{position:sticky;top:76px;height:calc(100dvh - 76px);background:#fff;border-right:1px solid var(--line);display:flex;flex-direction:column;min-height:0;z-index:20}.sidebar-heading{display:flex;align-items:center;justify-content:space-between;padding:25px 22px 19px}.eyebrow{font-size:9px;font-weight:700;letter-spacing:1.8px;color:#84939d}.sidebar-heading h2{font-size:16px;letter-spacing:.2px;margin:6px 0 0;font-weight:650}.live-badge{display:inline-flex;gap:5px;align-items:center;font-size:10px;background:#eef7f3;padding:5px 7px;border-radius:5px;color:#42816e}.live-badge i{width:4px;height:4px;background:#3d9b79;border-radius:100%}.input-tabs{display:grid;grid-template-columns:repeat(3,1fr);margin:0 20px 12px;padding:4px;background:#f2f5f8;border-radius:8px;gap:3px}.input-tabs button{background:transparent;border:0;border-radius:5px;padding:7px 1px;font-size:11px;color:#788592;white-space:nowrap}.input-tabs button[aria-selected=true]{background:white;color:#213f56;font-weight:650;box-shadow:0 1px 5px #152c4310}.controls-scroll{flex:1;min-height:0;overflow:auto;padding:0 21px 20px;scrollbar-width:thin;scrollbar-color:#dae1e8 transparent}.control-group{border-bottom:1px solid #edf0f3;padding:16px 0 17px}.control-group:last-child{border-bottom:0}.control-group-title{display:flex;align-items:center;justify-content:space-between;gap:7px;font-size:12px;font-weight:650;margin:0 0 13px;letter-spacing:.3px}.control-group-title .group-number{color:#9aabb8;font-size:10px;font-weight:550}.control-note{font-size:10px;line-height:1.75;color:#8b96a1;margin:8px 0 0}.control-note strong{font-weight:550;color:#5c7385}.field{margin:15px 0}.field:first-child{margin-top:0}.field:last-child{margin-bottom:0}.field-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:7px}.field-label{font-size:11px;color:#5b6f80;line-height:1.6}.value-box{display:flex;align-items:center;border:1px solid #dfe6ed;background:white;border-radius:6px;min-width:72px;max-width:120px;height:29px;overflow:hidden}.value-box input{width:100%;border:0;outline:0;background:transparent;min-width:0;padding:4px 7px;font-size:12px;font-weight:650;color:#2d465b;text-align:right}.value-box:focus-within{border-color:#789fdf;box-shadow:0 0 0 2px #4384ef12}.value-box span{font-size:10px;color:#91a0ab;padding-right:7px;white-space:nowrap}.field input[type=range]{width:100%;height:4px;margin:5px 0 0;cursor:pointer;appearance:none;border-radius:10px;outline:none;background:linear-gradient(to right,#507e9b var(--fill,40%),#e7edf2 var(--fill,40%))}.field input[type=range]::-webkit-slider-thumb{appearance:none;width:13px;height:13px;background:#fff;border:3px solid #244e69;border-radius:50%;box-shadow:0 1px 4px #244e691c}.field input[type=range]::-moz-range-thumb{width:8px;height:8px;background:#fff;border:3px solid #244e69;border-radius:50%}.range-ends{display:flex;justify-content:space-between;font-size:9px;color:#a0acb6;margin-top:5px}.quantity-presets,.quick-buttons{display:flex;gap:5px;margin-top:9px}.quantity-presets button,.quick-buttons button{flex:1;padding:6px 4px;background:#f6f8fb;border:1px solid #e5eaf0;border-radius:6px;font-size:10px;color:#758696}.quantity-presets button.active,.quick-buttons button.active{color:#28526f;background:#edf3f8;border-color:#bbcedd;font-weight:650}.section-tag{font-size:9px;letter-spacing:0;background:#edf3f7;color:#728ca2;padding:3px 5px;border-radius:4px;font-weight:500}.toggle-field{display:flex;gap:9px;align-items:flex-start;font-size:11px;line-height:1.65;color:#5e7486;margin:11px 0}.toggle-field input{accent-color:var(--teal);margin-top:3px;cursor:pointer}.full-number{display:flex;align-items:center;gap:8px;margin:12px 0}.full-number>label{flex:1;font-size:11px;line-height:1.6;color:#627789}.full-number .value-box{width:118px;flex-shrink:0}.full-number input[type=month]{font-size:11px;color:#476174;border:1px solid #dfe6ed;border-radius:5px;max-width:145px;padding:5px}.small-table{border-collapse:collapse;width:100%;margin:9px 0 0;font-size:10px}.small-table th{font-weight:500;color:#9ba7b1;padding:4px 3px;text-align:right}.small-table td{padding:5px 3px;color:#617a8d}.small-table th:first-child,.small-table td:first-child{text-align:left}.small-table input{border:1px solid #e1e7ee;border-radius:5px;padding:5px 4px;width:68px;text-align:right;background:#fff;font-size:10px;color:#375269}.sidebar-footer{padding:14px 21px 15px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:7px;background:white}.sidebar-footer button{font-size:10px;background:transparent;border:0;padding:2px 0;color:#597286}.sidebar-footer span{font-size:9px;color:#a3adb7}.field.invalid .value-box,.full-number.invalid .value-box{border-color:#d66b6b;background:#fff5f5}.is-disabled{opacity:.5}.is-disabled input{cursor:not-allowed}
+.main{min-width:0;padding:29px 32px 17px;max-width:1700px;width:100%;margin:auto}.page-heading{display:flex;justify-content:space-between;align-items:center;margin-bottom:23px}.page-heading h1{font-size:26px;font-weight:650;letter-spacing:-.7px;margin:9px 0 7px;line-height:1.4}.page-heading p{font-size:12px;color:#7d8d9a;margin:0;letter-spacing:.2px}.button-mobile{display:none}.scenario-bar{display:flex;align-items:center;justify-content:space-between;padding:12px 0 17px;border-top:1px solid var(--line);gap:10px}.scenario-ident{display:flex;gap:8px;align-items:center;min-width:0}.scenario-icon{color:#547b96;font-size:16px}.scenario-ident input{font-size:12px;border:1px solid transparent;background:transparent;padding:3px 4px;font-weight:550;color:#39576d;width:155px;border-radius:4px;min-width:80px}.scenario-ident input:hover{border-color:#d9e2ec}.scenario-ident input:focus{background:white;border-color:#b7c9d7;outline:none}.badge{display:inline-block;font-size:9px;font-weight:550;color:#798d9b;padding:4px 7px;border-radius:5px;background:#eef2f5;white-space:nowrap}.badge-blue{background:#eaf0fa;color:#6885b2}.scenario-meta{display:flex;gap:7px;flex-wrap:wrap;align-items:center;justify-content:flex-end;font-size:10px;color:#8a99a6}.meta-chip{background:white;padding:5px 8px;border:1px solid var(--line);border-radius:6px;white-space:nowrap}.meta-chip.warning{color:#ad7b34;background:#fffaf2;border-color:#efe1ca}.metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px;margin-bottom:25px}.metric{background:white;border:1px solid var(--line);border-radius:var(--radius);padding:18px 20px 16px;min-height:122px;box-shadow:0 2px 4px #152e4102;position:relative}.metric-label{display:flex;align-items:center;gap:6px;font-size:11px;color:#7c8c99}.metric-label svg{height:13px;width:13px;stroke:#8d9fad;stroke-width:1.6;fill:none}.metric-value{font-size:28px;font-weight:650;letter-spacing:-.9px;line-height:1.2;margin:12px 0 9px;font-variant-numeric:tabular-nums;white-space:nowrap}.metric-value .metric-unit{font-size:11px;letter-spacing:0;font-weight:500;color:#8c9ba5;margin-left:6px}.metric-sub{font-size:10px;color:#91a0ad;line-height:1.55;display:flex;align-items:center;gap:6px;flex-wrap:wrap}.metric-sub b{font-weight:550;color:#667d8f}.metric-profit{border-color:#d6e7df;background:linear-gradient(130deg,#fff 50%,#f6fbf8)}.metric-profit.negative{border-color:#eddede;background:linear-gradient(130deg,#fff 50%,#fff8f8)}.positive{color:var(--teal)!important}.negative{color:var(--red)!important}.neutral{color:#7c8c99!important}.pill-up{color:var(--teal);background:#edf7f2;border-radius:4px;padding:2px 5px}.pill-down{color:var(--red);background:#fff0f0;border-radius:4px;padding:2px 5px}.metric-wide-text{font-size:22px;line-height:1.5}.view-tabs{display:flex;align-items:center;gap:24px;border-bottom:1px solid #dfe6ed;margin-bottom:20px}.view-tabs button{background:transparent;border:0;border-bottom:2px solid transparent;padding:0 0 13px;color:#92a0ac;font-size:12px;font-weight:550;white-space:nowrap}.view-tabs button.active{color:#244b65;border-bottom-color:#244b65}.view-tabs button span{font-size:9px;background:#e8edf3;padding:1px 5px;border-radius:5px;margin-left:3px;color:#8d9ca7}.chart-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.panel{min-width:0;background:white;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;margin-bottom:18px;box-shadow:0 2px 4px #102b3c02}.chart-grid .panel{margin-bottom:0}.panel-heading{padding:20px 20px 5px;display:flex;align-items:flex-start;justify-content:space-between;gap:10px}.panel-heading h2{font-size:13px;font-weight:650;letter-spacing:.1px;margin:0 0 7px;line-height:1.55}.panel-heading p{color:#99a5ae;font-size:10px;margin:0;line-height:1.75}.unit-label{font-size:9px;color:#9ba7b1;white-space:nowrap;padding-top:3px}.chart-frame{padding:6px 15px 10px;min-height:235px}.chart-frame svg{display:block;width:100%;height:auto}.budget-chart{padding:18px 20px 22px;display:flex;gap:20px;align-items:center;min-height:244px}.donut-wrap{flex:0 0 44%;max-width:210px;position:relative}.donut-wrap svg{display:block;width:100%;height:auto;transform:rotate(-90deg)}.donut-center{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:7px;pointer-events:none}.donut-center span{color:#98a5b0;font-size:9px}.donut-center strong{font-size:22px;font-weight:650;letter-spacing:-.8px}.donut-center small{color:#9da9b4;font-size:8px}.donut-legend{flex:1;min-width:0;display:grid;gap:10px}.legend-row{display:flex;align-items:center;gap:6px;font-size:9px;color:#80909c}.legend-dot{width:6px;height:6px;border-radius:2px;flex-shrink:0}.legend-row .legend-name{flex:1;min-width:0}.legend-row b{font-weight:600;color:#486173;font-size:10px;font-variant-numeric:tabular-nums}.legend-row small{width:27px;text-align:right;color:#adb7bf;font-size:9px}.operating-panel{margin-top:18px}.operating-stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));padding:20px 20px 18px;gap:18px}.operating-stat{border-right:1px solid #e9edf2}.operating-stat:last-child{border:0}.operating-stat p{font-size:10px;color:#95a3ae;margin:0 0 10px}.operating-stat strong{font-size:18px;font-weight:600;letter-spacing:-.5px}.operating-stat small{display:block;font-size:9px;color:#a1adb6;margin-top:7px;line-height:1.6}.coverage-row{padding:12px 20px;background:#f9fbfc;border-top:1px solid #edf0f4;display:flex;gap:15px;font-size:10px;line-height:1.9;color:#8293a0;flex-wrap:wrap}.coverage-row b{color:#4e6c7f;font-weight:550}.text-button{background:none;border:0;font-size:10px;white-space:nowrap;color:#688ba5;padding:3px 0}.phase-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;padding:16px 20px 20px}.phase-item{padding:13px 13px 11px;background:#f7f9fc;border-radius:10px;border:1px solid #edf1f5;position:relative}.phase-item .phase-date{font-size:9px;color:#9ba8b3}.phase-item h3{font-size:11px;color:#60788d;margin:8px 0 9px;font-weight:550}.phase-item strong{font-size:19px;font-weight:650;letter-spacing:-.5px}.phase-item .phase-qty{font-size:9px;color:#97a4ae;margin-top:8px}.phase-item .phase-bar{height:3px;background:#e5ebf1;border-radius:3px;margin-top:10px}.phase-item .phase-bar span{display:block;height:100%;background:#83a7bc;border-radius:3px}.phase-item.highlight{background:#f0f5fa;border-color:#dce7f1}.phase-item.highlight .phase-bar span{background:#315f7d}.main-footer{display:flex;justify-content:space-between;gap:15px;padding-top:11px;color:#abb6c0;font-size:9px;line-height:1.7;margin-bottom:8px}
+.validation-banner,.notice-banner{padding:12px 15px;margin-bottom:16px;border-radius:9px;font-size:11px;line-height:1.8}.validation-banner{background:#fff0ef;border:1px solid #f0c9c5;color:#a24d48}.notice-banner{background:#fff8ec;border:1px solid #f1dfbe;color:#9d762e}.validation-banner strong{font-weight:650}.validation-banner button{float:right;border:0;background:transparent;font-size:10px;color:inherit}.results-invalid{opacity:.5;pointer-events:none}.table-wrap{overflow:auto;padding:8px 20px 18px;scrollbar-width:thin}.data-table{width:100%;border-collapse:collapse;font-size:10px;white-space:nowrap;text-align:right}.data-table th{padding:13px 10px;border-bottom:1px solid #e4eaf0;font-size:9px;font-weight:500;color:#94a4b0;background:#fafbfd}.data-table td{padding:15px 10px;border-bottom:1px solid #edf1f4;font-variant-numeric:tabular-nums;color:#4b6579}.data-table tr:last-child td{border-bottom:0}.data-table th:first-child,.data-table td:first-child{text-align:left;padding-left:5px}.data-table th:last-child,.data-table td:last-child{padding-right:4px}.data-table td small{display:block;color:#a5b0b9;font-size:9px;margin-top:5px}.data-table tr.total td{font-weight:650;background:#f6f9fc;border-top:1px solid #dfe7ef}.media-name{display:flex;align-items:center;gap:8px;font-weight:550;color:#314d62}.platform-icon{width:23px;height:23px;display:inline-flex;align-items:center;justify-content:center;border-radius:6px;font-size:10px;font-weight:700;flex-shrink:0}.status-badge{padding:4px 7px;border-radius:4px;font-size:9px;background:#eaf5ee;color:#358068;white-space:nowrap}.status-badge.bad{color:#b96664;background:#fdf0ef}.status-badge.warn{color:#b08039;background:#fcf5e9}.inline-select{font-size:9px;color:#9aa6b1;display:flex;align-items:center;gap:7px;white-space:nowrap}.inline-select select{font-size:10px;color:#567287;border:1px solid #e1e8ef;border-radius:6px;padding:7px;background:#fff;max-width:150px}.panel-footnote{font-size:10px;color:#9aa7b2;line-height:1.9;padding:0 20px 16px;margin:0}.common-summary{background:#f7fafb;padding:13px 20px;display:flex;justify-content:space-between;align-items:center;gap:10px;border-top:1px solid var(--line);font-size:10px;color:#879ba8;flex-wrap:wrap}.common-summary b{font-weight:550;color:#546e82}.allocation-fields{display:flex;gap:20px;padding:10px 20px;background:#f8fafc}.allocation-fields .full-number{flex:1;margin:5px 0}.allocation-fields .value-box{width:70px}.empty-state{text-align:center;padding:42px 20px;color:#9ba9b4}.empty-state .empty-icon{display:inline-flex;align-items:center;justify-content:center;border:1px dashed #dce4ec;background:#fafcfd;border-radius:13px;width:45px;height:45px;color:#a8b9c7;font-size:23px}.empty-state h3{font-size:12px;font-weight:550;color:#7f94a5;margin:15px 0 9px}.empty-state p{font-size:11px;line-height:1.8;margin:0}.comparison-table td.current-column,.comparison-table th.current-column{background:#f0f6fa;color:#2d536e}.comparison-table td:first-child{min-width:150px}.comparison-table th{white-space:normal;min-width:160px;max-width:260px;line-height:1.8}.saved-list{padding:5px 20px 16px}.saved-item{display:flex;justify-content:space-between;align-items:center;padding:15px 0;border-bottom:1px solid #edf1f4;gap:12px}.saved-item:last-child{border:0}.saved-item h3{font-size:12px;font-weight:550;margin:0 0 7px;color:#446276}.saved-item p{font-size:10px;color:#98a8b4;margin:0;line-height:1.6}.saved-item-actions{display:flex;align-items:center;gap:11px}.saved-item-actions button{background:none;border:0;padding:4px 0;font-size:10px;color:#7191a7}.saved-item-actions .delete-scenario{color:#b8a0a0}.compare-check{font-size:10px;color:#93a3af;display:flex;gap:4px;align-items:center}.compare-check input{accent-color:#3b6e8e}.basis-content{padding:12px 24px 25px;line-height:1.9;font-size:11px;color:#7d91a2}.basis-content h3{color:#385b74;font-size:12px;margin:21px 0 9px;font-weight:600}.basis-content p{margin:7px 0}.basis-content ol,.basis-content ul{padding-left:18px;margin:8px 0}.basis-content li{margin:5px 0}.basis-content a{color:#4f7f9d;text-decoration:none}.basis-content a:hover{text-decoration:underline}.basis-content code{font-family:inherit;background:#f3f6f9;padding:3px 6px;border-radius:4px;color:#526f84;font-size:10px}.basis-content .source-row{display:flex;align-items:baseline;gap:10px;padding:10px 0;border-bottom:1px solid #edf1f4;flex-wrap:wrap}.basis-content .source-row a{min-width:180px}.basis-content .source-row span{font-size:10px;color:#9aa8b3}.print-summary{display:none}.noscript{margin:30px;padding:20px;background:#fff4d9;color:#86672c}
+dialog{border:1px solid #e3e9ef;border-radius:18px;padding:28px;max-width:420px;width:calc(100% - 36px);box-shadow:0 24px 100px #18334429;color:var(--ink)}dialog::backdrop{background:#102a3d59;backdrop-filter:blur(3px)}dialog h2{font-size:19px;font-weight:600;margin:10px 0 12px}dialog p{font-size:12px;line-height:1.9;color:#8a9aa7;margin:0 0 20px}dialog label{display:block;font-size:11px;color:#7490a2;margin-bottom:8px}dialog input{width:100%;border:1px solid #d8e2eb;border-radius:8px;padding:11px 12px;font-size:12px;color:#355570;outline:none}dialog input:focus{border-color:#86a8c2}.dialog-actions{display:flex;justify-content:flex-end;gap:10px;margin-top:23px}.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:18px;border-radius:10px;background:#17394b;color:#e6eff5;padding:12px 19px;box-shadow:0 6px 30px #102b3c26;font-size:12px;z-index:200;max-width:calc(100% - 35px);line-height:1.6}.toast button{background:none;border:0;color:#a8e6cf;font-size:11px;white-space:nowrap}.report-mode .workspace{grid-template-columns:1fr}.report-mode .sidebar{display:none}.report-mode .top-actions #save-scenario,.report-mode .save-status{display:none}.report-mode .main{max-width:1360px}.report-mode .scenario-ident input{pointer-events:none}.report-mode .input-edit-only{display:none}.mobile-scrim{display:none}
+@media(min-width:1750px){.main{padding:33px 44px}.metric{min-height:132px;padding:21px 23px}.metric-value{font-size:31px}.chart-frame{padding:8px 22px 14px}.budget-chart{min-height:286px}.donut-wrap{max-width:230px}.donut-legend{gap:13px}.legend-row{font-size:11px}.legend-row b{font-size:12px}.panel-heading h2{font-size:14px}}
+@media(max-width:1350px){.workspace{grid-template-columns:280px minmax(0,1fr)}.sidebar-heading{padding:24px 18px 18px}.controls-scroll{padding-left:18px;padding-right:18px}.input-tabs{margin-left:16px;margin-right:16px}.main{padding:25px 23px 15px}.metric{padding:16px 16px 14px}.metric-value{font-size:25px}.chart-grid{gap:14px}.panel-heading{padding:18px 17px 5px}.budget-chart{gap:12px;padding:16px}.legend-row{gap:4px;font-size:9px}.legend-row b{font-size:10px}.donut-center strong{font-size:20px}.scenario-meta{gap:4px}.meta-chip{padding:4px 6px;font-size:9px}}
+@media(max-width:1150px){.chart-grid{grid-template-columns:1fr}.budget-chart{justify-content:center;gap:30px;padding:23px 35px}.donut-wrap{flex-basis:35%;max-width:200px}.donut-legend{max-width:300px;gap:13px}.legend-row{font-size:11px}.legend-row b{font-size:12px}.chart-frame{padding:4px 25px 13px;min-height:215px}.chart-frame svg{max-height:310px}.metrics{gap:10px}.metric-value{font-size:22px}.metric{min-height:120px;padding:15px 12px}.metric-sub{font-size:9px}.scenario-meta .meta-chip:nth-child(3){display:none}.operating-stats{gap:10px;padding:17px}.operating-stat strong{font-size:16px}.phase-grid{gap:6px;padding:14px 17px}.phase-item{padding:10px 8px}.phase-item h3{font-size:10px}.topbar{padding:0 22px}.save-status{font-size:10px}.top-actions{gap:7px}.main-footer{font-size:8px}}
+@media(max-width:950px){.workspace{grid-template-columns:255px minmax(0,1fr)}.sidebar-heading h2{font-size:14px}.live-badge{font-size:9px;padding:4px}.sidebar-heading{padding:21px 15px 16px}.controls-scroll{padding-left:15px;padding-right:15px}.main{padding:22px 18px 12px}.page-heading h1{font-size:23px}.metrics{grid-template-columns:repeat(2,minmax(0,1fr))}.metric{min-height:116px;padding:16px}.metric-value{font-size:26px}.brand-product,.brand-divider{display:none}.save-status{display:none}.scenario-bar{flex-wrap:wrap;padding-bottom:14px}.scenario-meta{justify-content:flex-start}.scenario-meta .meta-chip:nth-child(3){display:inline}.view-tabs{gap:19px}.view-tabs button{font-size:11px}.operating-stats{grid-template-columns:repeat(2,minmax(0,1fr));gap:17px}.operating-stat:nth-child(2){border:0}.panel-heading{flex-wrap:wrap}.phase-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.main-footer{flex-direction:column;gap:2px}.legend-row{font-size:10px}.donut-center strong{font-size:19px}.budget-chart{padding:22px 20px;gap:20px}.chart-frame{padding:5px 12px 12px}.sidebar-footer{padding:13px 15px}.sidebar-footer span{font-size:8px}}
+@media(max-width:720px){.topbar{height:64px;padding:0 16px}.brand-mark{width:31px;height:31px;line-height:27px;font-size:29px;border-radius:9px}.brand-name{font-size:21px}.top-actions{gap:5px}.top-actions .button{font-size:10px;height:33px;padding:0 9px}.top-actions #report-toggle{display:none}.workspace{display:block}.sidebar{display:none;position:fixed;left:0;top:64px;width:min(340px,92vw);height:calc(100dvh - 64px);z-index:50;box-shadow:15px 0 50px #16354c20}.sidebar.mobile-open{display:flex}.mobile-scrim.visible{display:block;position:fixed;inset:64px 0 0;background:#16324745;z-index:45}.main{padding:23px 16px 13px}.page-heading{margin-bottom:20px}.page-heading h1{font-size:23px;letter-spacing:-.7px}.page-heading p{font-size:10px}.button-mobile{display:inline-flex;min-width:70px;background:var(--navy);color:white;font-size:10px;height:33px;padding:0 10px}.eyebrow{font-size:8px;letter-spacing:1.5px}.metrics{gap:10px;margin-bottom:23px}.metric{padding:15px 13px;min-height:119px;border-radius:13px}.metric-value{font-size:25px}.metric-label{font-size:10px}.metric-sub{font-size:9px}.scenario-ident input{width:140px}.scenario-meta{gap:5px}.scenario-meta .meta-chip{font-size:9px}.view-tabs{gap:22px;overflow:auto}.view-tabs button{font-size:11px}.chart-grid{gap:13px}.panel{border-radius:13px;margin-bottom:13px}.panel-heading{padding:17px 16px 6px}.panel-heading h2{font-size:13px}.panel-heading p{font-size:9px}.chart-frame{min-height:170px;padding:7px 10px 12px}.budget-chart{padding:20px 18px 25px;gap:18px;min-height:238px}.donut-wrap{flex-basis:43%}.donut-legend{gap:11px}.donut-center strong{font-size:20px}.legend-row{font-size:9px}.legend-row b{font-size:10px}.legend-row small{width:23px;font-size:8px}.operating-panel{margin-top:13px}.operating-stats{padding:17px 16px}.coverage-row{padding:11px 16px;font-size:9px;gap:5px 15px}.table-wrap{padding:7px 15px 15px}.data-table{font-size:10px}.data-table td{padding:13px 10px}.panel-footnote{padding:0 16px 15px;font-size:9px}.allocation-fields{flex-wrap:wrap;gap:8px 20px}.allocation-fields .full-number{flex-basis:100%}.comparison-table th{min-width:135px}.comparison-table td:first-child{min-width:120px}.saved-item{align-items:flex-start;flex-direction:column}.saved-item-actions{gap:19px}.basis-content{padding:6px 16px 21px;font-size:10px}.basis-content h3{font-size:11px}.source-row{gap:3px!important}.source-row a{min-width:0!important}.phase-grid{padding:13px 16px 16px}.report-mode .button-mobile{display:none}}
+@media print{@page{size:A4 landscape;margin:12mm}*{print-color-adjust:exact;-webkit-print-color-adjust:exact}body{background:#fff;font-size:10px}.topbar{position:static;height:40px;padding:0 0 10px;border-bottom:1px solid #dce4ec}.brand-name{font-size:18px}.brand-mark{width:28px;height:28px;font-size:25px;line-height:24px}.brand-product{display:inline;font-size:11px}.top-actions,.sidebar,.button-mobile,.view-tabs,.scenario-ident input+.badge,.text-button,.inline-select,.menu-popover,.toast,dialog,.main-footer,.validation-banner,.notice-banner{display:none!important}.workspace{display:block}.main{max-width:none!important;padding:14px 0 0!important}.page-heading{margin-bottom:12px}.page-heading h1{font-size:22px;margin-top:4px}.page-heading p{font-size:10px}.scenario-bar{padding:8px 0 12px}.scenario-ident input{width:220px;border:0;font-size:11px}.scenario-meta .meta-chip{font-size:8px}.metrics{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-bottom:14px}.metric{padding:11px 13px;min-height:95px;break-inside:avoid;box-shadow:none;border-radius:9px}.metric-value{font-size:24px;margin:8px 0 6px}.metric-label{font-size:9px}.metric-sub{font-size:8px}.chart-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.panel{border-radius:9px;box-shadow:none;break-inside:avoid;margin-bottom:10px}.chart-grid .panel{margin-bottom:0}.panel-heading{padding:12px 13px 3px}.panel-heading h2{font-size:11px;margin-bottom:4px}.panel-heading p{font-size:8px}.chart-frame{min-height:0;padding:3px 12px 7px}.chart-frame svg{max-height:220px}.budget-chart{min-height:205px;padding:12px 25px;gap:25px}.donut-wrap{max-width:170px}.donut-legend{gap:9px}.legend-row{font-size:9px}.legend-row b{font-size:10px}.donut-center strong{font-size:19px}.operating-stats{grid-template-columns:repeat(4,minmax(0,1fr));padding:13px;gap:10px}.operating-stat strong{font-size:16px}.operating-stat p,.operating-stat small{font-size:8px}.coverage-row{font-size:8px;padding:8px 13px}.phase-grid{grid-template-columns:repeat(4,minmax(0,1fr));padding:11px 13px;gap:8px}.phase-item{padding:9px}.phase-item h3{font-size:9px}.phase-item strong{font-size:16px}.phases-panel{margin-top:10px}.view-panel{display:block!important}.view-panel[hidden]{display:block!important}#view-channels{break-before:page}#view-compare,#view-basis{display:none!important}.data-table{font-size:9px}.data-table td{padding:11px 7px}.data-table th{font-size:8px;padding:10px 7px}.table-wrap{overflow:visible;padding:5px 13px 12px}.panel-footnote{font-size:8px;padding:0 13px 10px}.common-summary{font-size:8px;padding:10px 13px}.print-summary{display:block;border-top:1px solid #e4e9ee;padding:10px 0;margin-top:13px;color:#718999;font-size:9px;line-height:1.9}.results-invalid{opacity:1}.report-mode .main{max-width:none}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+.results-invalid{pointer-events:auto}.sidebar-close{display:none}.menu-popover>a{display:block;width:100%;text-align:left;border:0;background:white;padding:11px;border-radius:7px;font-size:12px;text-decoration:none;color:inherit}.menu-popover>a:hover{background:#f1f5fa}.report-mode .inline-select,.report-mode #custom-allocation,.report-mode #edit-monthly,.report-mode #edit-phases{display:none!important}@media(max-width:720px){.sidebar-close{display:inline-flex;align-items:center;justify-content:center;width:25px;height:25px;border:1px solid #e5ebf0;border-radius:6px;background:white;color:#93a4b1;font-size:18px}}@media print{#validation-banner:not([hidden]){display:block!important}}
+</style>
+  <script defer>(function (root) {
+  'use strict';
+  const BASE_ROAS = Object.freeze({ Meta: 1.94, Google: 2.91, Amazon: 3.93, TikTok: 1.98 });
+  const CHANNELS = ['官网', 'Amazon', 'TikTok'];
+  const PHASES = [
+    ['官网早鸟预售', '11/10—11/19'], ['首发活动', '11/20—12/02'],
+    ['常规促销', '12/03—12/17'], ['年末正价', '12/18—12/31']
+  ];
+  const DEFAULTS = {
+    qty: 4000, fx: 6.7, transfer: 500,
+    baseWeb: 40, baseAmazon: 40, baseTikTok: 20,
+    phasePrice0: 279, phasePrice1: 319, phasePrice2: 339, phasePrice3: 399,
+    phaseWeight0: 5, phaseWeight1: 60, phaseWeight2: 30, phaseWeight3: 5,
+    organicWeb: 40, organicAmazon: 50, organicTikTok: 35,
+    roasMeta: BASE_ROAS.Meta * 1.1, roasGoogle: BASE_ROAS.Google * 1.1,
+    roasAmazon: BASE_ROAS.Amazon * 1.1, roasTikTok: BASE_ROAS.TikTok * 1.1,
+    webMetaShare: 70,
+    returnWeb: 8, returnAmazon: 15, returnTikTok: 15,
+    feeWeb: 6, feeAmazon: 15, feeTikTok: 6,
+    tailWeb: 15.96, tailAmazon: 7.98, tailTikTok: 15.96,
+    costProduct: 850, costHead: 110.16, reservePct: 2,
+    kolUSD: 100000, prWireCNY: 17741.5, prTargetUSD: 21900, extraFixedCNY: 0,
+    commNatural: 20, commAd: 5, commCoverage: 100,
+    sampleShippingCNY: 217.092,
+    launchSamples: 0, launchOps: 0, launchRights: 0, launchReserveCover: true,
+    monthQty: 3000, monthPrice: 339,
+    monthWeb: 40, monthAmazon: 40, monthTikTok: 20, monthInheritMix: false,
+    monthRoasFactor: 100, monthInheritOrganic: true,
+    monthOrganicWeb: 40, monthOrganicAmazon: 50, monthOrganicTikTok: 35,
+    monthKOLUSD: 0, monthPRCNY: 0, monthSamples: 30,
+    monthOps: 24780, monthRights: 5000, monthOther: 0, monthReserveCover: true,
+    allocationMode: 'none', allocWeb: 43, allocAmazon: 50.5, allocTikTok: 6.5,
+    monthStart: '2027-01'
+  };
+  const pctKeys = Object.keys(DEFAULTS).filter(k => /^(base|organic|return|fee|monthOrganic|alloc)/.test(k) || ['webMetaShare','reservePct','commNatural','commAd','commCoverage','monthWeb','monthAmazon','monthTikTok'].includes(k) || /^phaseWeight/.test(k));
+  const intKeys = ['qty','transfer','launchSamples','monthQty','monthSamples'];
+  const clone = obj => JSON.parse(JSON.stringify(obj));
+  const sum = xs => xs.reduce((a,b) => a+b,0);
+  const near = (a,b) => Math.abs(a-b) < 1e-6;
+  const defaultState = () => clone(DEFAULTS);
+  function referenceState(qty = 4000) {
+    const s = defaultState(); s.qty = qty; s.transfer = 0; s.organicWeb = 35;
+    Object.entries(BASE_ROAS).forEach(([k,v]) => { s['roas'+k] = v; });
+    return s;
+  }
+  function validate(s) {
+    const errors = [];
+    for (const [key,value] of Object.entries(DEFAULTS)) {
+      if (typeof value === 'number' && (typeof s[key] !== 'number' || !Number.isFinite(s[key]))) errors.push({key,message:'请填写有效数字'});
+      else if (typeof value === 'boolean' && typeof s[key] !== 'boolean') errors.push({key,message:'开关值无效'});
+    }
+    if (errors.length) return errors;
+    for (const [key,value] of Object.entries(DEFAULTS)) {
+      if (typeof value === 'number' && s[key] < 0) errors.push({key,message:'数值不能小于0'});
+      if (typeof value === 'number' && s[key] > 1e9) errors.push({key,message:'数值超出可测算范围'});
+    }
+    pctKeys.forEach(key => { if (s[key] > 100) errors.push({key,message:'比例应在0%至100%之间'}); });
+    intKeys.forEach(key => { if (!Number.isInteger(s[key]) || s[key] > 1000000) errors.push({key,message:'台数应为0至1,000,000的整数'}); });
+    ['roasMeta','roasGoogle','roasAmazon','roasTikTok'].forEach(key => {
+      if (s[key] < .01 || s[key] > 1000) errors.push({key,message:'ROAS应大于0，且不超过1,000'});
+    });
+    if (s.fx <= 0 || s.fx > 1000) errors.push({key:'fx',message:'汇率应大于0，且不超过1,000'});
+    if (s.monthRoasFactor <= 0 || s.monthRoasFactor > 1000) errors.push({key:'monthRoasFactor',message:'常态效率比例应大于0，且不超过1,000%'});
+    for (let i=0;i<4;i++) if (s['phasePrice'+i] > 100000) errors.push({key:'phasePrice'+i,message:'阶段售价超出测算范围'});
+    if (!near(sum([0,1,2,3].map(i=>s['phaseWeight'+i])),100)) errors.push({key:'phaseWeight0',message:'四个阶段的销量占比合计须为100%'});
+    if (!near(s.baseWeb+s.baseAmazon+s.baseTikTok,100)) errors.push({key:'baseWeb',message:'正式开售阶段的渠道占比合计须为100%'});
+    if (!s.monthInheritMix && !near(s.monthWeb+s.monthAmazon+s.monthTikTok,100)) errors.push({key:'monthWeb',message:'常态运营渠道占比合计须为100%'});
+    if (!['none','gmv','units','custom'].includes(s.allocationMode)) errors.push({key:'allocationMode',message:'费用分摊方式无效'});
+    if (s.allocationMode==='custom' && !near(s.allocWeb+s.allocAmazon+s.allocTikTok,100)) errors.push({key:'allocWeb',message:'自定义分摊比例合计须为100%'});
+    if (typeof s.monthStart!=='string' || !/^\d{4}-(0[1-9]|1[0-2])$/.test(s.monthStart)) errors.push({key:'monthStart',message:'请填写有效运营起始月份'});
+    return errors;
+  }
+  function maxTransfer(s) {
+    const postWeight = sum([1,2,3].map(i=>s['phaseWeight'+i]))/100;
+    return Math.max(0,Math.floor(s.qty*postWeight*s.baseTikTok/100 + 1e-7));
+  }
+  function launchRows(s) {
+    const postWeight = sum([1,2,3].map(i=>s['phaseWeight'+i]))/100;
+    const appliedTransfer = Math.min(s.transfer,maxTransfer(s));
+    const shift = s.qty*postWeight > 0 ? appliedTransfer/(s.qty*postWeight) : 0;
+    return [0,1,2,3].map(i=>({ name:PHASES[i][0], dates:PHASES[i][1], price:s['phasePrice'+i],
+      qty:s.qty*s['phaseWeight'+i]/100,
+      shares:i===0?[1,0,0]:[s.baseWeb/100,s.baseAmazon/100+shift,Math.max(0,s.baseTikTok/100-shift)] }));
+  }
+  function aggregate(s, rows, organic, roasFactor=1) {
+    const suffixes=['Web','Amazon','TikTok'];
+    const channels=CHANNELS.map((name,i)=>({name,index:i,qty:0,gmv:0,purchase:0,head:0,tail:0,platform:0,returnLoss:0,reserve:0,ad:0,commission:0,paidGMV:0,paidQty:0,organicQty:0,preMarketing:0,contribution:0}));
+    const media=['Meta','Google','Amazon','TikTok'].map(name=>({name,ad:0,gmv:0,qty:0,roas:s['roas'+name]*roasFactor}));
+    for (const row of rows) for (let k=0;k<3;k++) {
+      const c=channels[k], suffix=suffixes[k], n=row.qty*row.shares[k];
+      const gmv=n*row.price*s.fx, org=organic[k]/100;
+      const purchase=n*s.costProduct, head=n*s.costHead, tail=n*s['tail'+suffix]*s.fx;
+      const platform=gmv*s['fee'+suffix]/100, returnLoss=gmv*s['return'+suffix]/100, reserve=gmv*s.reservePct/100;
+      const paidGMV=gmv*(1-org), paidQty=n*(1-org);
+      let ad=0;
+      if (k===0) {
+        const split=s.webMetaShare/100;
+        for (const [mi,share] of [[0,split],[1,1-split]]) {
+          const spend=paidGMV*share/media[mi].roas;
+          media[mi].ad+=spend;media[mi].gmv+=paidGMV*share;media[mi].qty+=paidQty*share;ad+=spend;
+        }
+      } else {
+        const mi=k+1;ad=paidGMV/media[mi].roas;
+        media[mi].ad+=ad;media[mi].gmv+=paidGMV;media[mi].qty+=paidQty;
+      }
+      const commission=k===2 ? gmv*(1-s.returnTikTok/100)*(org*s.commNatural/100+(1-org)*s.commAd/100)*s.commCoverage/100 : 0;
+      const preMarketing=gmv-purchase-head-tail-platform-returnLoss-reserve;
+      for (const [key,value] of Object.entries({qty:n,gmv,purchase,head,tail,platform,returnLoss,reserve,ad,commission,paidGMV,paidQty,organicQty:n*org,preMarketing,contribution:preMarketing-ad-commission})) c[key]+=value;
+    }
+    const totals={};
+    for (const key of ['qty','gmv','purchase','head','tail','platform','returnLoss','reserve','ad','commission','paidGMV','paidQty','organicQty','preMarketing','contribution']) totals[key]=sum(channels.map(c=>c[key]));
+    const priceFallback=sum(rows.map(r=>r.qty*r.price))/(totals.qty||1);
+    channels.forEach(c=>{c.avgPrice=c.qty>0?c.gmv/c.qty/s.fx:priceFallback;c.unitContribution=c.qty>0?c.contribution/c.qty:0;});
+    media.forEach(m=>{m.cpa=m.qty>0?m.ad/m.qty:null;});
+    return {...totals,channels,media,rows,blendROAS:totals.ad>0?totals.paidGMV/totals.ad:null,adCPA:totals.paidQty>0?totals.ad/totals.paidQty:null};
+  }
+  function expenseCoverage(reserve, requested, cover) {
+    return {requested,covered:cover?Math.min(reserve,requested):0,extra:cover?Math.max(0,requested-reserve):requested,remaining:cover?Math.max(0,reserve-requested):reserve};
+  }
+  function finish(s, a, fixed, coverage, allocationMode='none') {
+    const common=fixed.kol+fixed.pr+fixed.other+coverage.extra;
+    const netProfit=a.contribution-common;
+    const totalCost=a.gmv-netProfit;
+    const marketingTotal=a.ad+a.commission+a.reserve+common;
+    let weights=[0,0,0];
+    if (allocationMode==='gmv') weights=a.channels.map(c=>a.gmv>0?c.gmv/a.gmv:1/3);
+    if (allocationMode==='units') weights=a.channels.map(c=>a.qty>0?c.qty/a.qty:1/3);
+    if (allocationMode==='custom') weights=[s.allocWeb,s.allocAmazon,s.allocTikTok].map(x=>x/100);
+    a.channels.forEach((c,i)=>{c.allocatedCommon=common*weights[i];c.profitAfterAllocation=c.contribution-c.allocatedCommon;});
+    const maxAd=a.ad+netProfit;
+    return {...a,fixed,coverage,common,totalCost,marketingTotal,netProfit,profitMargin:a.gmv>0?netProfit/a.gmv:null,
+      mer:marketingTotal>0?a.gmv/marketingTotal:null,
+      unallocatedCommon:allocationMode==='none'?common:0,
+      sampleUnitCost:s.costProduct+s.sampleShippingCNY,
+      breakEvenAd:maxAd>0?maxAd:0,
+      breakEvenROAS:maxAd>0&&a.paidGMV>0?a.paidGMV/maxAd:null,
+      efficiencyToBreakEven:maxAd>0&&a.ad>0?a.ad/maxAd:null};
+  }
+  function launch(s) {
+    const a=aggregate(s,launchRows(s),[s.organicWeb,s.organicAmazon,s.organicTikTok]);
+    const requested=s.launchSamples*(s.costProduct+s.sampleShippingCNY)+s.launchOps+s.launchRights;
+    const coverage=expenseCoverage(a.reserve,requested,s.launchReserveCover);
+    return finish(s,a,{kol:s.kolUSD*s.fx,pr:s.prWireCNY+s.prTargetUSD*s.fx,other:s.extraFixedCNY},coverage,s.allocationMode);
+  }
+  function monthly(s, first) {
+    const shares=s.monthInheritMix ? first.channels.map(c=>first.qty>0?c.qty/first.qty:0) : [s.monthWeb,s.monthAmazon,s.monthTikTok].map(x=>x/100);
+    if (s.monthInheritMix&&first.qty===0) shares.splice(0,3,s.baseWeb/100,s.baseAmazon/100,s.baseTikTok/100);
+    const organic=s.monthInheritOrganic?[s.organicWeb,s.organicAmazon,s.organicTikTok]:[s.monthOrganicWeb,s.monthOrganicAmazon,s.monthOrganicTikTok];
+    const a=aggregate(s,[{name:'常态运营',dates:s.monthStart,price:s.monthPrice,qty:s.monthQty,shares}],organic,s.monthRoasFactor/100);
+    const requested=s.monthSamples*(s.costProduct+s.sampleShippingCNY)+s.monthOps+s.monthRights;
+    return finish(s,a,{kol:s.monthKOLUSD*s.fx,pr:s.monthPRCNY,other:s.monthOther},expenseCoverage(a.reserve,requested,s.monthReserveCover));
+  }
+  function recovery(first, month, s) {
+    const loss=Math.max(0,-first.netProfit);
+    const covered=first.netProfit>=-1e-7;
+    const months=covered?0:month.netProfit>0?loss/month.netProfit:null;
+    return {loss,status:covered?'covered':month.netProfit>0?'recovering':'unrecoverable',months,
+      wholeMonths:months===null?null:Math.ceil(months-1e-10),
+      units:months===null?null:Math.ceil(months*s.monthQty-1e-8),
+      horizon:months!==null?Math.max(6,Math.min(24,Math.ceil(months)+2)):12,
+      points:Array.from({length:25},(_,i)=>({month:i,balance:first.netProfit+month.netProfit*i}))};
+  }
+  function compute(input) {
+    const errors=validate(input);
+    if (errors.length) return {ok:false,errors};
+    const s=clone(input);const cap=maxTransfer(s);const requestedTransfer=s.transfer;
+    s.transfer=Math.min(s.transfer,cap);
+    const first=launch(s), month=monthly(s,first), ref=launch(referenceState(s.qty));
+    return {ok:true,state:s,first,month,reference:ref,recovery:recovery(first,month,s),maxTransfer:cap,
+      improvement:first.netProfit-ref.netProfit,
+      warnings:requestedTransfer>s.transfer?[`转移台数已限制为${s.transfer}台，未超过TikTok可承接转出的目标。`]:[]};
+  }
+  function adUnitEconomics(s, price, result) {
+    const first=result||launch(s);
+    return ['Meta','Google','Amazon','TikTok'].map((name,i)=>{
+      const k=i<2?0:i-1, suffix=['Web','Amazon','TikTok'][k];
+      const fallback=[0,1,2,3].reduce((n,i)=>n+s['phasePrice'+i]*s['phaseWeight'+i]/100,0);
+      const p=price==='weighted'?(first.channels[k].qty>0?first.channels[k].avgPrice:fallback):Number(price);
+      const revenue=p*s.fx;
+      const pre=revenue*(1-s['fee'+suffix]/100-s['return'+suffix]/100-s.reservePct/100)-s.costProduct-s.costHead-s['tail'+suffix]*s.fx;
+      const commission=k===2?revenue*(1-s.returnTikTok/100)*s.commAd/100*s.commCoverage/100:0;
+      const maxAd=pre-commission, roas=s['roas'+name], adCost=revenue/roas;
+      return {name,price:p,revenue,roas,maxAd,breakEvenROAS:maxAd>0?revenue/maxAd:null,adCost,unitProfit:maxAd-adCost,commission};
+    });
+  }
+  function importState(raw) {
+    if (!raw || typeof raw!=='object' || Array.isArray(raw)) throw new Error('参数文件格式不正确');
+    const s=defaultState();
+    for (const key of Object.keys(DEFAULTS)) if (Object.hasOwn(raw,key)) s[key]=raw[key];
+    const errors=validate(s);
+    if (errors.length) throw new Error(errors[0].message);
+    return s;
+  }
+  root.MoviwiModel=Object.freeze({BASE_ROAS,CHANNELS,PHASES,DEFAULTS,defaultState,referenceState,clone,validate,maxTransfer,launch,monthly,compute,adUnitEconomics,importState});
+})(globalThis);
+</script>
+  
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="./" aria-label="Moviwi 经营测算首页"><span class="brand-mark">m<span></span></span><span class="brand-name">moviwi<span class="brand-divider"></span><span class="brand-product">经营测算</span></span></a>
+    <div class="top-actions">
+      <span class="save-status" id="save-status"><span class="status-dot"></span>本机自动保存</span>
+      <button class="button button-quiet" id="report-toggle" type="button">汇报视图</button>
+      <details class="export-menu" id="export-menu"><summary class="button button-quiet">导出 <span aria-hidden="true">⌄</span></summary><div class="menu-popover"><button type="button" id="export-csv">数据表 CSV</button><button type="button" id="export-json">参数备份 JSON</button><button type="button" id="import-json">导入参数 JSON</button><button type="button" id="print-report">打印 / 保存 PDF</button></div></details>
+      <button class="button button-primary" id="save-scenario" type="button"><span aria-hidden="true">＋</span> 保存方案</button>
+    </div>
+  </header>
+  <div class="workspace">
+    <aside class="sidebar" id="sidebar" aria-label="测算参数">
+      <div class="sidebar-heading"><div><span class="eyebrow">MODEL INPUTS</span><h2>调整你的方案</h2></div><span class="live-badge"><i></i>即时测算</span><button class="sidebar-close" type="button" id="close-inputs" aria-label="关闭参数面板">×</button></div>
+      <div class="input-tabs" role="tablist" aria-label="参数分组"><button role="tab" aria-selected="true" data-input-tab="main">主要参数</button><button role="tab" aria-selected="false" data-input-tab="cost">成本费用</button><button role="tab" aria-selected="false" data-input-tab="monthly">后续运营</button></div>
+      <div class="controls-scroll" id="controls"></div>
+      <div class="sidebar-footer"><button id="reset-defaults" type="button">↺ 恢复默认方案</button><span>金额统一折算人民币</span></div>
+    </aside>
+    <main id="main" class="main">
+      <section class="page-heading">
+        <div><div class="eyebrow">MOVIWI / LAUNCH ECONOMICS</div><h1>首发营销与利润测算</h1><p>首发营销、渠道贡献与经营回收，一起测算。</p></div>
+        <button type="button" class="button button-mobile" id="mobile-inputs">调整参数</button>
+      </section>
+      <div class="scenario-bar"><div class="scenario-ident"><span class="scenario-icon" aria-hidden="true">◈</span><input id="scenario-name" aria-label="当前方案名称" maxlength="60" value="当前优化方案"><span class="badge badge-blue">方案测算</span></div><div class="scenario-meta" id="scenario-meta"></div></div>
+      <div class="validation-banner" id="validation-banner" role="alert" hidden></div>
+      <div class="notice-banner" id="notice-banner" role="status" hidden></div>
+      <section class="metrics" id="metrics" aria-label="经营核心指标"></section>
+      <nav class="view-tabs" aria-label="结果视图"><button class="active" data-view="overview" aria-current="page">经营总览</button><button data-view="channels">广告与渠道</button><button data-view="compare">方案对比 <span id="scenario-count">0</span></button><button data-view="basis">计算依据</button></nav>
+      <div id="results">
+        <section class="view-panel" id="view-overview" aria-label="经营总览">
+          <div class="chart-grid">
+            <article class="panel"><div class="panel-heading"><div><h2>营销费用花在哪里</h2><p>广告、品牌合作及其他营销支出</p></div><span class="unit-label">人民币 · 万元</span></div><div id="budget-chart" class="budget-chart"></div></article>
+            <article class="panel"><div class="panel-heading"><div><h2>从销售额到利润</h2><p>完整扣除本批经营与营销成本</p></div><span class="unit-label">万元</span></div><div id="waterfall-chart" class="chart-frame"></div></article>
+            <article class="panel"><div class="panel-heading"><div><h2>哪个渠道带来贡献</h2><p>已扣广告、佣金及变动成本，未分摊共同费用</p></div></div><div id="channel-chart" class="chart-frame"></div></article>
+            <article class="panel"><div class="panel-heading"><div><h2>后续经营回收曲线</h2><p id="recovery-subtitle">首发结束后，以常态月经营贡献回收亏损</p></div><button type="button" class="text-button" id="edit-monthly">调整月度参数 ↗</button></div><div id="recovery-chart" class="chart-frame"></div></article>
+          </div>
+          <article class="panel operating-panel"><div class="panel-heading"><div><h2>回本，取决于怎样的日常经营</h2><p>首发目标与后续月销量独立计算；回收期为利润覆盖期。</p></div><span class="badge" id="monthly-mix-badge"></span></div><div class="operating-stats" id="operating-stats"></div><div class="coverage-row" id="coverage-row"></div></article>
+          <article class="panel phases-panel"><div class="panel-heading"><div><h2>阶段价格与销售结构</h2><p>官网预售从11月10日开始，11月20日正式开售并发货。</p></div><button type="button" class="text-button" id="edit-phases">调整阶段 ↗</button></div><div id="phase-summary"></div></article>
+        </section>
+        <section class="view-panel" id="view-channels" aria-label="广告与渠道" hidden>
+          <article class="panel"><div class="panel-heading"><div><h2>广告订单，能留下多少贡献</h2><p>单台口径含2%预留及适用广告佣金，未分摊KOL、PR等共同费用。</p></div><label class="inline-select">测算售价 <select id="ad-price" aria-label="广告表现测算售价"><option value="319">活动价 $319</option><option value="339">常态价 $339</option><option value="weighted">各渠道首发加权价</option></select></label></div><div id="ad-performance"></div><p class="panel-footnote">ROAS的分子沿用发货GMV；退货另计损失。这里展示输入条件下的预计表现，实际执行需用去重订单及实际成本校准。</p></article>
+          <article class="panel"><div class="panel-heading"><div><h2>渠道费用与利润</h2><p>先看渠道直接贡献，再按需要分摊共同费用。</p></div><label class="inline-select">共同费用分摊 <select id="allocation-mode" aria-label="共同费用分摊方式"><option value="none">共同费用单列</option><option value="gmv">按渠道GMV</option><option value="units">按渠道销量</option><option value="custom">自定义比例</option></select></label></div><div id="custom-allocation" hidden></div><div id="channel-details"></div></article>
+          <article class="panel"><div class="panel-heading"><div><h2>投放预算拆分</h2><p>官网广告按归因GMV分配至Meta和Google，综合ROAS按金额加权。</p></div></div><div id="media-details"></div></article>
+        </section>
+        <section class="view-panel" id="view-compare" aria-label="方案对比" hidden>
+          <article class="panel"><div class="panel-heading"><div><h2>把不同选择放在一起看</h2><p>当前方案始终与同销量的原经营假设对照，可再选最多两份已保存方案。</p></div><button class="button button-primary" type="button" id="save-scenario-second">保存当前方案</button></div><div id="comparison-table"></div></article>
+          <article class="panel"><div class="panel-heading"><div><h2>已保存的方案</h2><p>保存在当前浏览器。跨设备使用时，可导出并导入JSON参数。</p></div></div><div id="saved-scenarios"></div></article>
+        </section>
+        <section class="view-panel" id="view-basis" aria-label="计算依据" hidden>
+          <article class="panel"><div class="panel-heading"><div><h2>读懂这份测算</h2><p>所有结果来自当前参数；参考值和待核实费用分别列明。</p></div><span class="badge">口径更新 2026.10.19</span></div><div id="basis-content"></div></article>
+        </section>
+      </div>
+      <footer class="main-footer"><span>Moviwi · 经营决策工作台</span><span>项目税前贡献口径 · TVC另列 · 参数保存在本机浏览器</span></footer>
+    </main>
+  </div>
+  <dialog id="save-dialog"><form id="save-form"><span class="eyebrow">SAVE SCENARIO</span><h2>保存当前方案</h2><p>保留这组参数，之后可以载入或与其他方案比较。</p><label for="save-name">方案名称</label><input id="save-name" maxlength="60" required placeholder="例如：4千台 退货改善1个百分点"><div class="dialog-actions"><button type="button" class="button button-quiet" id="cancel-save">取消</button><button type="submit" class="button button-primary">保存方案</button></div></form></dialog>
+  <input type="file" id="import-file" accept=".json,application/json" hidden>
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+  <noscript><p class="noscript">请启用JavaScript以使用交互测算。所有计算均在你的浏览器内完成。</p></noscript>
+<script>(function () {
+  'use strict';
+  const M=globalThis.MoviwiModel, $=id=>document.getElementById(id);
+  const STORE='moviwi-profit-planner-v1';
+  const nf=new Intl.NumberFormat('zh-CN',{maximumFractionDigits:0});
+  const num=(v,d=0)=>Number(v).toLocaleString('zh-CN',{minimumFractionDigits:d,maximumFractionDigits:d});
+  const wan=(v,sign=false)=>(v<0?'−':sign&&v>0?'+':'')+num(Math.abs(v)/10000,2);
+  const cash=(v,d=0)=>(v<0?'−':'')+'¥'+num(Math.abs(v),d);
+  const pct=(v,d=1)=>v===null?'—':num(v*100,d)+'%';
+  const signClass=v=>v>1e-7?'positive':v< -1e-7?'negative':'neutral';
+  const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  let state=M.defaultState(), name='当前优化方案', saved=[],selected=[],view='overview',inputTab='main',lastResult=null,storageOK=true,saveTimer,toastTimer;
+  let undoAction=null;
+  try {
+    const raw=localStorage.getItem(STORE);
+    if(raw){const data=JSON.parse(raw);state=M.importState(data.state);name=typeof data.name==='string'?data.name.slice(0,60):name;
+      saved=Array.isArray(data.saved)?data.saved.slice(0,30).filter(x=>{try{M.importState(x.state);return typeof x.id==='string'&&typeof x.name==='string';}catch{return false;}}).map(x=>({...x,name:x.name.slice(0,60),state:M.importState(x.state)})):[];
+      selected=Array.isArray(data.selected)?data.selected.filter(id=>saved.some(x=>x.id===id)).slice(0,2):[];
+    }
+  }catch{storageOK=false;}
+  const ICONS={profit:'<path d="m3 14 5-5 4 3 6-8M13 4h5v5"/>',gmv:'<path d="M3 5h14v12H3zM6 5V3h8v2M7 9h6M7 12h4"/>',budget:'<rect x="3" y="5" width="14" height="12" rx="2"/><path d="M3 9h14M12 13h2"/>',cost:'<path d="M5 3h10v14l-2-1-3 1-3-1-2 1zM8 7h4M8 10h4"/>',monthly:'<path d="M3 16V9h3v7M9 16V5h3v11M15 16V2h3v14"/>',recovery:'<circle cx="10" cy="10" r="7"/><path d="M10 6v4l3 2"/>'};
+  const icon=k=>`<svg viewBox="0 0 20 20" aria-hidden="true">${ICONS[k]||ICONS.profit}</svg>`;
+  const colors={Meta:'#5285d6',Google:'#64a28b',Amazon:'#dba94d',TikTok:'#3d5060',KOL:'#9d8fc5',PR:'#6eaeba',commission:'#d99191',other:'#b1bcc9'};
+  function toast(text,action){
+    clearTimeout(toastTimer);undoAction=action||null;
+    $('toast').innerHTML=`<span>${esc(text)}</span>${action?'<button type="button" id="undo-action">撤销</button>':''}`;$('toast').hidden=false;
+    toastTimer=setTimeout(()=>{$('toast').hidden=true;undoAction=null;},action?7000:4000);
+  }
+  function persist(){
+    clearTimeout(saveTimer);saveTimer=setTimeout(()=>{
+      try {if(!M.validate(state).length){localStorage.setItem(STORE,JSON.stringify({version:1,state,name,saved,selected}));storageOK=true;}}
+      catch{storageOK=false;}
+      $('save-status').classList.toggle('failed',!storageOK);
+      $('save-status').innerHTML=`<span class="status-dot"></span>${storageOK?'本机已自动保存':'无法保存，请导出备份'}`;
+    },200);
+  }
+  function field(key,label,{min=0,max=100,step=1,unit='%',decimals=0,disabled=false}={}){
+    const value=state[key],d=Number.isFinite(value)?String(Number(value.toFixed(4))):'',rangeMax=Math.max(max,Number.isFinite(value)?value:0,min+step);
+    return `<div class="field${disabled?' is-disabled':''}" data-field="${key}"><div class="field-head"><label class="field-label" for="input-${key}">${label}</label><div class="value-box"><input type="number" id="input-${key}" aria-label="${esc(label)}数值" data-key="${key}" data-decimals="${decimals}" min="${min}" step="${step}" value="${d}" ${disabled?'disabled':''}><span>${unit}</span></div></div><input type="range" aria-label="${esc(label)}" data-key="${key}" min="${min}" max="${rangeMax}" data-max="${max}" step="${step}" value="${Number.isFinite(value)?value:min}" ${disabled?'disabled':''}><div class="range-ends"><span>${num(min)}${unit}</span><span data-range-end="${key}">${num(rangeMax)}${unit}</span></div></div>`;
+  }
+  function full(key,label,unit='',step=.01){
+    const value=Number.isFinite(state[key])?String(Number(state[key].toFixed(4))):'';
+    return `<div class="full-number" data-field="${key}"><label for="input-${key}">${label}</label><div class="value-box"><input id="input-${key}" type="number" aria-label="${esc(label)}" data-key="${key}" min="0" step="${step}" value="${value}"><span>${unit}</span></div></div>`;
+  }
+  const toggle=(key,label)=>`<label class="toggle-field"><input type="checkbox" data-key="${key}" ${state[key]?'checked':''}>${label}</label>`;
+  const group=(number,title,body,tag='')=>`<section class="control-group"><h3 class="control-group-title"><span><span class="group-number">${number} / </span>${title}</span>${tag?`<span class="section-tag">${tag}</span>`:''}</h3>${body}</section>`;
+  const quick=(kind,items)=>`<div class="quick-buttons">${items.map(([value,label])=>`<button type="button" data-preset="${kind}" data-value="${value}">${label}</button>`).join('')}</div>`;
+  function renderControls(){
+    document.querySelectorAll('[data-input-tab]').forEach(el=>el.setAttribute('aria-selected',el.dataset.inputTab===inputTab));
+    let h='';
+    if(inputTab==='main'){
+      h+=group('01','销售目标',field('qty','首发发货目标',{max:10000,step:1,unit:'台'})+`<div class="quantity-presets">${[3000,4000,5000].map(n=>`<button type="button" data-preset="qty" data-value="${n}">${num(n)} 台</button>`).join('')}</div>`+field('transfer','TikTok转移至Amazon',{max:M.maxTransfer(state),step:1,unit:'台'})+'<p class="control-note" id="mix-note"></p>');
+      h+=group('02','广告ROAS',quick('roas',[[1,'原参考值'],[1.1,'＋10%'],[1.2,'＋20%']])+Object.keys(M.BASE_ROAS).map(k=>field('roas'+k,k+' ROAS',{min:.5,max:8,step:.001,unit:'倍',decimals:3})).join('')+'<p class="control-note">快捷键以原参考值为起点。固定销售目标下，ROAS用于反推广告预算。</p>');
+      h+=group('03','非当期广告成交',field('organicWeb','官网非广告占比')+field('organicAmazon','Amazon非广告占比')+field('organicTikTok','TikTok非广告占比')+'<p class="control-note">包含达人、PR、品牌搜索和自然访问带来的去重订单；相关合作费用仍计入成本。</p>');
+      h+=group('04','退货损失',quick('returns',[[0,'保留原值'],[1,'下降1pp'],[2,'下降2pp']])+field('returnWeb','官网退货损失率',{max:30,step:.1,decimals:1})+field('returnAmazon','Amazon退货损失率',{max:30,step:.1,decimals:1})+field('returnTikTok','TikTok退货损失率',{max:30,step:.1,decimals:1})+'<p class="control-note">pp指百分点。这里调整的是GMV损失比例，发货目标不重复扣减退货。</p>');
+    }else if(inputTab==='cost'){
+      h+=group('01','汇率与单台成本',full('fx','人民币／美元汇率','',.01)+full('costProduct','产品采购成本','元／台')+full('costHead','销售商品头程','元／台')+full('tailWeb','官网尾程','美元／台')+full('tailAmazon','Amazon尾程','美元／台')+full('tailTikTok','TikTok尾程','美元／台'));
+      h+=group('02','平台费用与佣金',full('feeWeb','官网平台及支付费率','%')+full('feeAmazon','Amazon平台费率','%')+quick('amzFee',[[15,'15% 原口径'],[8,'8% 待核实试算']])+full('feeTikTok','TikTok平台费率','%')+full('commNatural','TikTok自然订单佣金','%')+full('commAd','TikTok广告订单佣金','%')+full('commCoverage','TikTok付佣覆盖率','%')+'<p class="control-note">8%需核对ASIN费用预览。自然与广告订单佣金互斥，按扣除退货后的成交额计提。</p>');
+      h+=group('03','首发固定投入',full('kolUSD','KOL合作总预算','美元',100)+full('prWireCNY','美通社B套餐','元')+full('prTargetUSD','Kest定向发布','美元')+full('extraFixedCNY','其他一次性投入','元')+'<p class="control-note"><strong>TVC计入0元，另表管理。</strong>KOL为全部机构合计，不按机构重复采购。</p>');
+      h+=group('04','预留及执行明细',full('reservePct','其他营销预留／GMV','%')+full('launchSamples','额外寄样台数','台',1)+full('sampleShippingCNY','每台样机总运费','元')+full('launchOps','首发执行及其他杂费','元')+full('launchRights','KOL包外素材授权','元')+toggle('launchReserveCover','优先由其他营销预留覆盖以上明细')+'<p class="control-note">样机成本＝采购成本＋样机总运费，不占待售库存。预留覆盖时仅追加超出部分；包内授权不再填入。</p>');
+      h+=group('05','阶段价格与比例',`<table class="small-table"><thead><tr><th>阶段</th><th>售价／美元</th><th>销量／%</th></tr></thead><tbody>${M.PHASES.map((p,i)=>`<tr><td>${p[0]}<br><span style="color:#a4afb8;font-size:8px">${p[1]}</span></td><td><input type="number" data-key="phasePrice${i}" aria-label="${p[0]}售价" min="0" step="1" value="${state['phasePrice'+i]}"></td><td><input type="number" data-key="phaseWeight${i}" aria-label="${p[0]}销量占比" min="0" max="100" step=".1" value="${state['phaseWeight'+i]}"></td></tr>`).join('')}</tbody></table>`+full('baseWeb','正式开售官网基础比例','%')+full('baseAmazon','正式开售Amazon基础比例','%')+full('baseTikTok','正式开售TikTok基础比例','%')+'<p class="control-note">阶段占比及正式开售渠道占比分别合计100%。预售仅官网，500台转移按正式开售阶段权重分配。</p>');
+      h+=group('06','官网广告分配',field('webMetaShare','官网广告GMV分给Meta')+'<p class="control-note">剩余分给Google。这里分配的是广告归因GMV，不是预算占比。</p>');
+    }else{
+      h+=group('01','正常运营规模',field('monthQty','后续每月发货量',{max:10000,step:1,unit:'台'})+quick('monthlyQty',[[2000,'2,000台'],[3000,'3,000台'],[5000,'5,000台']])+full('monthPrice','常态成交价','美元')+`<div class="full-number"><label for="month-start">运营起始月</label><input type="month" id="month-start" aria-label="运营起始月" data-key="monthStart" value="${esc(state.monthStart)}"></div>`);
+      h+=group('02','常态渠道结构',toggle('monthInheritMix','沿用首发最终渠道比例')+field('monthWeb','常态官网比例',{disabled:state.monthInheritMix,step:.1,decimals:1})+field('monthAmazon','常态Amazon比例',{disabled:state.monthInheritMix,step:.1,decimals:1})+field('monthTikTok','常态TikTok比例',{disabled:state.monthInheritMix,step:.1,decimals:1})+'<p class="control-note">独立设置时合计100%。沿用时按首发最终比例，不在每月再次扣转500台。</p>');
+      h+=group('03','常态获客效果',field('monthRoasFactor','相对当前ROAS的效率',{min:20,max:150,step:1})+toggle('monthInheritOrganic','沿用首发非广告成交占比')+field('monthOrganicWeb','常态官网非广告',{disabled:state.monthInheritOrganic})+field('monthOrganicAmazon','常态Amazon非广告',{disabled:state.monthInheritOrganic})+field('monthOrganicTikTok','常态TikTok非广告',{disabled:state.monthInheritOrganic})+'<p class="control-note">100%表示沿用当前四个平台ROAS。成本、平台费率及退货损失率沿用当前输入。</p>');
+      h+=group('04','日常内容与执行',full('monthKOLUSD','每月额外付费KOL','美元')+full('monthPRCNY','每月额外PR','元')+full('monthSamples','每月额外寄样','台',1)+full('monthOps','每月执行及工具','元')+full('monthRights','每月包外授权及剪辑','元')+full('monthOther','每月其他固定追加','元')+toggle('monthReserveCover','寄样、执行及授权优先由2%预留覆盖')+'<p class="control-note">默认由内部置换接续，额外付费KOL月包为0。原执行、样机和续权预算均可按实际调整。</p>');
+    }
+    $('controls').innerHTML=h;syncControls();
+  }
+  function syncControls(){
+    document.querySelectorAll('[data-key]').forEach(el=>{
+      const key=el.dataset.key;let v=state[key];
+      if(lastResult&&state.monthInheritMix&&['monthWeb','monthAmazon','monthTikTok'].includes(key)){
+        const i=['monthWeb','monthAmazon','monthTikTok'].indexOf(key);
+        v=lastResult.first.qty>0?lastResult.first.channels[i].qty/lastResult.first.qty*100:[state.baseWeb,state.baseAmazon,state.baseTikTok][i];
+      }
+      if(state.monthInheritOrganic&&['monthOrganicWeb','monthOrganicAmazon','monthOrganicTikTok'].includes(key))v=state[key.replace('monthOrganic','organic')];
+      if(el.type==='checkbox'){el.checked=Boolean(v);return;}
+      if(el.type==='range'){
+        const max=key==='transfer'?M.maxTransfer(state):Math.max(Number(el.dataset.max),Number.isFinite(v)?v:0);
+        el.max=String(Math.max(Number(el.min),max));
+        if(document.activeElement!==el&&Number.isFinite(v))el.value=String(v);
+        const fill=Math.max(0,Math.min(100,(Number(el.value)-Number(el.min))/(Number(el.max)-Number(el.min)||1)*100));el.style.setProperty('--fill',fill+'%');
+        const end=document.querySelector(`[data-range-end="${key}"]`);if(end)end.textContent=num(max)+(key==='transfer'?'台':key==='qty'||key==='monthQty'?'台':key.startsWith('roas')?'倍':'%');
+      }else if(document.activeElement!==el){
+        el.value=typeof v==='string'?v:Number.isFinite(v)?String(Number(v.toFixed(4))):'';
+      }
+    });
+    document.querySelectorAll('[data-preset]').forEach(el=>{
+      const v=Number(el.dataset.value),kind=el.dataset.preset;
+      let active=kind==='qty'?state.qty===v:kind==='monthlyQty'?state.monthQty===v:kind==='amzFee'?state.feeAmazon===v:false;
+      if(kind==='roas')active=Object.keys(M.BASE_ROAS).every(k=>Math.abs(state['roas'+k]-M.BASE_ROAS[k]*v)<1e-6);
+      if(kind==='returns')active=[state.returnWeb,state.returnAmazon,state.returnTikTok].every((r,i)=>Math.abs(r-([8,15,15][i]-v))<1e-6);
+      el.classList.toggle('active',active);
+    });
+    if($('mix-note')&&lastResult){const ns=balancedCounts(lastResult.first.channels.map(c=>c.qty));$('mix-note').innerHTML=`目标 <strong>官网${num(ns[0])}／Amazon${num(ns[1])}／TikTok${num(ns[2])}</strong> 台。最多可转${num(lastResult.maxTransfer)}台。`;}
+  }
+  function balancedCounts(values){
+    const a=values.map(x=>Math.floor(x+1e-9));let remain=Math.round(values.reduce((a,b)=>a+b,0))-a.reduce((a,b)=>a+b,0);
+    const order=values.map((x,i)=>({i,f:x-a[i]})).sort((a,b)=>b.f-a.f);for(let i=0;i<remain;i++)a[order[i%order.length].i]++;
+    return a;
+  }
+  function metric(label,value,sub,key,extra=''){
+    return `<article class="metric ${extra}" data-metric="${key}"><div class="metric-label">${icon(key)}${label}</div><div class="metric-value${key==='recovery'&&typeof value==='string'&&!/[0-9]/.test(value)?' metric-wide-text':''}" id="metric-${key}">${value}</div><div class="metric-sub">${sub}</div></article>`;
+  }
+  function renderMetrics(r){
+    const a=r.first,m=r.month,rec=r.recovery;
+    const profitLabel=a.netProfit<0?'项目预计亏损':'项目税前利润';
+    const imp=`<span class="${r.improvement>=0?'pill-up':'pill-down'}">较对照 ${wan(r.improvement,true)}万</span>`;
+    let payValue,paySub;
+    if(rec.status==='covered'){payValue='首发已保本';paySub='后续经营贡献可继续累计';}
+    else if(rec.status==='unrecoverable'){payValue='暂无回收期';paySub='当前常态月结余不为正';}
+    else{payValue=`${num(rec.months,2)}<span class="metric-unit">月</span>`;paySub=`按${rec.wholeMonths}个完整月预算 · 后续约${num(rec.units)}台`;}
+    $('metrics').innerHTML=
+      metric(profitLabel,`<span class="${signClass(a.netProfit)}">${wan(a.netProfit)}</span><span class="metric-unit">万元</span>`,`${imp}<span>利润率 ${pct(a.profitMargin)}</span>`,'profit','metric-profit '+(a.netProfit<0?'negative':''))+
+      metric('目标销售额 GMV',`${wan(a.gmv)}<span class="metric-unit">万元</span>`,`${num(state.qty)}台 · 加权售价 $${a.qty>0?num(a.gmv/a.qty/state.fx,2):'—'}`,'gmv')+
+      metric('完整营销投入',`${wan(a.marketingTotal)}<span class="metric-unit">万元</span>`,`含KOL、PR、广告、佣金及预留 · ${a.gmv>0?pct(a.marketingTotal/a.gmv):'—'}`,'budget')+
+      metric('全部经营成本',`${wan(a.totalCost)}<span class="metric-unit">万元</span>`,`含商品、履约、平台及退货损失 · TVC另列`,'cost')+
+      metric('常态项目月结余',`<span class="${signClass(m.netProfit)}">${wan(m.netProfit)}</span><span class="metric-unit">万元</span>`,`月发${num(state.monthQty)}台 · 均价$${num(state.monthPrice)} · 可调整`,'monthly')+
+      metric('首发亏损回收期',payValue,paySub,'recovery');
+    $('scenario-meta').innerHTML=`<span class="meta-chip">${num(state.qty)}台首发</span><span class="meta-chip">汇率 ${num(state.fx,2)}</span><span class="meta-chip">其他预留 ${num(state.reservePct,1)}%</span>${state.feeAmazon!==15?`<span class="meta-chip warning">Amazon ${num(state.feeAmazon,1)}% 试算</span>`:'<span class="meta-chip">TVC另列</span>'}`;
+  }
+  function budgetSegments(a){return [
+    ...a.media.map(m=>({name:m.name+'广告',value:m.ad,color:colors[m.name]})),
+    {name:'KOL合作',value:a.fixed.kol,color:colors.KOL},{name:'PR发布',value:a.fixed.pr,color:colors.PR},
+    {name:'成交佣金',value:a.commission,color:colors.commission},
+    {name:'预留及其他',value:a.reserve+a.coverage.extra+a.fixed.other,color:colors.other}
+  ];}
+  function renderBudget(a){
+    const seg=budgetSegments(a),total=a.marketingTotal,C=2*Math.PI*80;let offset=0;
+    const circles=seg.filter(x=>x.value>0).map(x=>{const dash=total>0?x.value/total*C:0;const h=`<circle cx="110" cy="110" r="80" fill="none" stroke="${x.color}" stroke-width="25" stroke-dasharray="${dash} ${C-dash}" stroke-dashoffset="${-offset}"><title>${esc(x.name)}：${cash(x.value)}，${pct(x.value/total)}</title></circle>`;offset+=dash;return h;}).join('');
+    $('budget-chart').innerHTML=`<div class="donut-wrap"><svg viewBox="0 0 220 220" role="img" aria-label="营销费用构成"><circle cx="110" cy="110" r="80" stroke="#edf1f5" stroke-width="25" fill="none"/>${circles}</svg><div class="donut-center"><span>完整营销投入</span><strong>${wan(total)}</strong><small>万元 CNY</small></div></div><div class="donut-legend">${seg.map(x=>`<div class="legend-row"><span class="legend-dot" style="background:${x.color}"></span><span class="legend-name">${x.name}</span><b>${wan(x.value)}</b><small>${total>0?num(x.value/total*100,0):0}%</small></div>`).join('')}</div>`;
+  }
+  function svgWrap(label,body,width=640,height=260){return `<svg viewBox="0 0 ${width} ${height}" role="img" aria-label="${esc(label)}">${body}</svg>`;}
+  function renderWaterfall(a){
+    const items=[['销售GMV',a.gmv,true],['采购头程',-(a.purchase+a.head)],['尾程履约',-a.tail],['平台费用',-a.platform],['退货损失',-a.returnLoss],['KOL及PR',-(a.fixed.kol+a.fixed.pr)],['广告佣金',-(a.ad+a.commission)],['预留其他',-(a.reserve+a.coverage.extra+a.fixed.other)],['项目利润',a.netProfit,true]];
+    const W=640,H=270,L=12,R=10,T=28,B=213,hi=Math.max(a.gmv,1)*1.07,lo=Math.min(0,a.netProfit)*1.13,scale=(B-T)/(hi-lo||1),y=v=>B-(v-lo)*scale;
+    let current=a.gmv,body=`<line x1="${L}" x2="${W-R}" y1="${y(0)}" y2="${y(0)}" stroke="#e4eaf0"/>`;
+    const step=(W-L-R)/items.length,bw=33;
+    items.forEach((it,i)=>{
+      const x=L+step*i+(step-bw)/2;let start,end;
+      if(i===0){start=0;end=a.gmv;}else if(i===items.length-1){start=0;end=a.netProfit;}else{start=current;end=current+it[1];current=end;}
+      const top=Math.min(y(start),y(end)),height=Math.max(2,Math.abs(y(end)-y(start)));
+      const color=i===0?'#547d97':i===items.length-1?(a.netProfit>=0?'#4f9d84':'#cf8784'):'#b8cbd8';
+      body+=`<rect x="${x}" y="${top}" width="${bw}" height="${height}" rx="3" fill="${color}"><title>${it[0]}：${cash(it[1])}</title></rect><text x="${x+bw/2}" y="${Math.max(12,top-7)}" fill="${i===items.length-1?color:'#8a9daa'}" font-size="9" text-anchor="middle">${wan(it[1])}</text><text x="${x+bw/2}" y="239" font-size="9" fill="#879ba9" text-anchor="middle">${it[0]}</text>`;
+      if(i>0&&i<items.length-2)body+=`<line x1="${x+bw}" x2="${x+step}" y1="${y(end)}" y2="${y(end)}" stroke="#d9e3eb" stroke-dasharray="3 3"/>`;
+    });
+    $('waterfall-chart').innerHTML=svgWrap('销售额扣减各项成本后形成项目利润',body,W,H);
+  }
+  function renderChannelChart(a){
+    const W=640,H=250,L=104,R=95,vals=a.channels.map(c=>c.contribution),lo=Math.min(0,...vals)*1.15,hi=Math.max(1,...vals)*1.15;
+    const x=v=>L+(v-lo)/(hi-lo)*(W-L-R),zero=x(0);let body=`<line x1="${zero}" x2="${zero}" y1="22" y2="214" stroke="#e2eaf0" stroke-dasharray="4 4"/>`;
+    const counts=balancedCounts(a.channels.map(c=>c.qty));
+    a.channels.forEach((c,i)=>{const yy=35+i*64,xx=x(c.contribution),color=c.contribution>=0?'#6a91a7':'#d59a97';body+=`<text x="10" y="${yy+13}" font-size="12" fill="#4b6a80">${c.name}</text><text x="10" y="${yy+31}" font-size="9" fill="#a0adb8">${num(counts[i])} 台 · ${num(a.qty>0?c.qty/a.qty*100:0,1)}%</text><rect x="${Math.min(xx,zero)}" y="${yy}" width="${Math.max(2,Math.abs(xx-zero))}" height="24" rx="5" fill="${color}"><title>${c.name}分摊前贡献：${cash(c.contribution)}</title></rect><text x="${xx+(c.contribution>=0?8:-8)}" y="${yy+16}" font-size="11" font-weight="550" text-anchor="${c.contribution>=0?'start':'end'}" fill="${c.contribution>=0?'#517b91':'#bf7774'}">${wan(c.contribution)}万</text>`;});
+    body+='<text x="630" y="239" text-anchor="end" font-size="9" fill="#9aabb7">共同费用在整体利润中另扣</text>';
+    $('channel-chart').innerHTML=svgWrap('各渠道扣广告及佣金后的分摊前贡献',body,W,H);
+  }
+  function monthLabel(index){
+    if(index===0)return '首发结束';
+    const [y,m]=state.monthStart.split('-').map(Number),t=y*12+m-1+index-1;
+    return `${Math.floor(t/12)}/${String(t%12+1).padStart(2,'0')}`;
+  }
+  function renderRecovery(r){
+    const rec=r.recovery,points=rec.points.slice(0,rec.horizon+1),W=640,H=270,L=51,R=18,T=28,B=212;
+    const values=points.map(p=>p.balance),min=Math.min(0,...values),max=Math.max(0,...values);let range=Math.max(max-min,10000),lo=min-range*.09,hi=max+range*.12;
+    const x=i=>L+i/rec.horizon*(W-L-R),y=v=>B-(v-lo)/(hi-lo)*(B-T);let body='';
+    for(let i=0;i<4;i++){const v=lo+(hi-lo)*i/3,yy=y(v);body+=`<line x1="${L}" x2="${W-R}" y1="${yy}" y2="${yy}" stroke="#edf1f5"/><text x="${L-9}" y="${yy+3}" font-size="9" text-anchor="end" fill="#9eadb9">${num(v/10000,0)}</text>`;}
+    body+=`<text x="${L-12}" y="14" text-anchor="end" font-size="9" fill="#9eadb9">万元</text><line x1="${L}" x2="${W-R}" y1="${y(0)}" y2="${y(0)}" stroke="#b7cbbf" stroke-dasharray="4 4"/>`;
+    const path=points.map((p,i)=>(i?'L':'M')+x(p.month).toFixed(2)+','+y(p.balance).toFixed(2)).join(' '),color=r.month.netProfit>=0?'#4d927d':'#c58a87';
+    body+=`<defs><linearGradient id="recovery-fill" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="${color}" stop-opacity=".13"/><stop offset="100%" stop-color="${color}" stop-opacity="0"/></linearGradient></defs><path d="${path} L${x(rec.horizon)},${B} L${L},${B} Z" fill="url(#recovery-fill)"/><path d="${path}" fill="none" stroke="${color}" stroke-width="2.5" stroke-linejoin="round"/>`;
+    const spacing=rec.horizon<=8?1:Math.ceil(rec.horizon/6);
+    points.forEach(p=>{if(p.month%spacing===0||p.month===rec.horizon){body+=`<circle cx="${x(p.month)}" cy="${y(p.balance)}" r="3" fill="white" stroke="${color}" stroke-width="1.5"><title>${monthLabel(p.month)}累计利润：${cash(p.balance)}</title></circle><text x="${x(p.month)}" y="235" font-size="8.5" text-anchor="middle" fill="#9aaab6">${monthLabel(p.month)}</text>`;}});
+    if(rec.months!==null&&rec.months>0&&rec.months<=rec.horizon){const xx=x(rec.months);body+=`<circle cx="${xx}" cy="${y(0)}" r="5" fill="#4d927d" stroke="white" stroke-width="2"/><text x="${Math.min(W-110,Math.max(65,xx+9))}" y="${Math.min(B-8,Math.max(T+12,y(0)-12))}" font-size="9" fill="#498a76">约${num(rec.months,2)}月覆盖</text>`;}
+    body+=`<text x="${W-R}" y="260" font-size="8" text-anchor="end" fill="#a1aeb9">按相同月销量与效率平稳运行测算</text>`;
+    $('recovery-chart').innerHTML=svgWrap('首发及后续运营累计利润回收曲线',body,W,H);
+    $('recovery-subtitle').textContent=rec.status==='covered'?'首发已覆盖本表成本，继续观察常态经营贡献。':rec.status==='unrecoverable'?'当前月结余不为正，曲线尚不能覆盖首发亏损。':'首发结束后，以常态经营贡献覆盖待回收亏损。';
+  }
+  function renderMonthly(r){
+    const a=r.month;
+    $('monthly-mix-badge').textContent=state.monthInheritMix?'沿用首发渠道比例':'独立月度渠道比例';
+    const items=[['月度发货与成交价',`${num(state.monthQty)}台 / $${num(state.monthPrice)}`,`官网${num(a.channels[0].qty,0)} / Amazon${num(a.channels[1].qty,0)} / TikTok${num(a.channels[2].qty,0)}`],['每月广告消耗',`${wan(a.ad)} 万元`,`最终ROAS×${num(state.monthRoasFactor/100,2)}，非广告占比可独立设置`],['每月内容与执行明细',`${wan(a.coverage.requested)} 万元`,`样机${state.monthSamples}台 · 单台含运费${cash(a.sampleUnitCost,2)}`],['常态月结余',`${wan(a.netProfit)} 万元`,`另列付费KOL $${num(state.monthKOLUSD)} · 额外PR ${cash(state.monthPRCNY)}`]];
+    $('operating-stats').innerHTML=items.map((x,i)=>`<div class="operating-stat"><p>${x[0]}</p><strong class="${i===3?signClass(a.netProfit):''}">${x[1]}</strong><small>${x[2]}</small></div>`).join('');
+    $('coverage-row').innerHTML=`<span>月度其他预留 <b>${wan(a.reserve)}万</b></span><span>已覆盖执行明细 <b>${wan(a.coverage.covered)}万</b></span><span>额外追加 <b class="${a.coverage.extra>0?'negative':''}">${wan(a.coverage.extra)}万</b></span><span>预留剩余 <b>${wan(a.coverage.remaining)}万</b></span>`;
+  }
+  function renderPhases(a){
+    const counts=balancedCounts(a.rows.map(x=>x.qty));
+    $('phase-summary').innerHTML=`<div class="phase-grid">${a.rows.map((p,i)=>`<div class="phase-item${i===1?' highlight':''}"><span class="phase-date">${p.dates}</span><h3>${p.name}</h3><strong>$${num(p.price)}</strong><div class="phase-qty">${num(counts[i])} 台 · 销量 ${num(state['phaseWeight'+i],1)}%</div><div class="phase-bar"><span style="width:${state['phaseWeight'+i]}%"></span></div></div>`).join('')}</div>`;
+  }
+  const table=(heads,rows,cls='')=>`<div class="table-wrap"><table class="data-table ${cls}"><thead><tr>${heads.map(x=>`<th>${x}</th>`).join('')}</tr></thead><tbody>${rows.map(x=>`<tr${x.total?' class="total"':''}>${x.cells.map(c=>`<td>${c}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`;
+  const platform=(name)=>`<span class="media-name"><span class="platform-icon" style="background:${colors[name]||'#6b8ba1'}18;color:${colors[name]||'#6b8ba1'}">${name==='官网'?'W':name[0]}</span>${name}</span>`;
+  function renderAdPerformance(r){
+    const price=$('ad-price').value;
+    const data=M.adUnitEconomics(state,price,r.first);
+    $('ad-performance').innerHTML=table(['广告平台','当前ROAS','预计获客成本／台','广告费上限／台','单笔保本ROAS','单笔贡献','状态'],data.map(x=>({cells:[platform(x.name),`${num(x.roas,3)}<small>售价 $${num(x.price,2)}</small>`,`${cash(x.adCost,2)}<small>$${num(x.adCost/state.fx,2)}</small>`,`${cash(x.maxAd,2)}<small>含适用佣金，未含共同费用</small>`,x.breakEvenROAS===null?'无正向获客空间':num(x.breakEvenROAS,2),`<span class="${signClass(x.unitProfit)}">${cash(x.unitProfit,2)}</span>`,`<span class="status-badge ${x.unitProfit<0?'bad':''}">${x.unitProfit>=0?'高于单笔保本':'低于单笔保本'}</span>`]})));
+  }
+  function renderChannelDetails(r){
+    const a=r.first,counts=balancedCounts(a.channels.map(c=>c.qty)),allocated=state.allocationMode!=='none';
+    $('allocation-mode').value=state.allocationMode;
+    $('custom-allocation').hidden=state.allocationMode!=='custom';
+    if(state.allocationMode==='custom'&&!$('custom-allocation').firstElementChild)$('custom-allocation').innerHTML=`<div class="allocation-fields">${full('allocWeb','官网分摊','%')+full('allocAmazon','Amazon分摊','%')+full('allocTikTok','TikTok分摊','%')}</div>`;
+    else if(state.allocationMode!=='custom')$('custom-allocation').innerHTML='';
+    const rows=a.channels.map((c,i)=>({cells:[platform(c.name),num(counts[i]),wan(c.gmv),wan(c.purchase+c.head+c.tail),wan(c.platform+c.returnLoss+c.reserve),wan(c.ad),wan(c.commission),`<span class="${signClass(c.contribution)}">${wan(c.contribution)}</span>`,allocated?wan(c.allocatedCommon):'共同费用单列',`<span class="${signClass(c.profitAfterAllocation)}">${wan(c.profitAfterAllocation)}</span>`]}));
+    rows.push({total:true,cells:['合计',num(state.qty),wan(a.gmv),wan(a.purchase+a.head+a.tail),wan(a.platform+a.returnLoss+a.reserve),wan(a.ad),wan(a.commission),wan(a.contribution),allocated?wan(a.common):'单列 '+wan(a.common),`<span class="${signClass(allocated?a.netProfit:a.contribution)}">${wan(allocated?a.netProfit:a.contribution)}</span>`]});
+    $('channel-details').innerHTML=table(['渠道','发货台数','GMV／万','采购及物流／万','平台退货预留／万','广告／万','佣金／万','分摊前贡献／万','共同费用／万',allocated?'分摊后利润／万':'分摊前利润／万'],rows)+`<div class="common-summary"><span>共同费用 ${wan(a.common)}万元＝KOL ${wan(a.fixed.kol)}万＋PR ${wan(a.fixed.pr)}万＋其他及预留超支 ${wan(a.fixed.other+a.coverage.extra)}万</span><b>整体项目利润 <span class="${signClass(a.netProfit)}">${wan(a.netProfit)}万元</span></b></div>`;
+  }
+  function renderMedia(r){
+    const a=r.first;
+    const rows=a.media.map(m=>({cells:[platform(m.name),num(m.roas,3),wan(m.gmv),wan(m.ad),num(m.qty,1),m.cpa===null?'—':cash(m.cpa,2)]}));
+    rows.push({total:true,cells:['综合／合计',a.blendROAS===null?'无需广告支撑':num(a.blendROAS,3),wan(a.paidGMV),wan(a.ad),num(a.paidQty,1),a.adCPA===null?'—':cash(a.adCPA,2)]});
+    $('media-details').innerHTML=table(['媒体','最终ROAS','广告归因GMV／万','预计消耗／万','支撑订单／台','平均获客成本'],rows)+`<div class="common-summary"><span>整体营销投入产出 GMV／完整营销成本：<b>${a.mer===null?'—':num(a.mer,2)+'倍'}</b>，与广告ROAS口径不同。</span><span>当前保本所需综合广告ROAS：<b>${a.breakEvenROAS===null?'仅靠广告效率无法覆盖':num(a.breakEvenROAS,2)}</b></span></div>`;
+  }
+  function recoveryText(r){return r.recovery.status==='covered'?'首发已保本':r.recovery.months===null?'当前无法回收':num(r.recovery.months,2)+'月 / '+num(r.recovery.units)+'台';}
+  function renderComparison(r){
+    $('scenario-count').textContent=String(saved.length);
+    const ref=M.compute(M.referenceState(state.qty));
+    const columns=[{name:'同销量原经营假设',r:ref},{name:name||'当前方案',r},...selected.map(id=>saved.find(x=>x.id===id)).filter(Boolean).map(x=>({name:x.name,r:M.compute(x.state)})).filter(x=>x.r.ok)];
+    const definitions=[['销售目标',r=>num(r.state.qty)+'台'],['目标GMV',r=>wan(r.first.gmv)+'万'],['完整营销投入',r=>wan(r.first.marketingTotal)+'万'],['广告预算',r=>wan(r.first.ad)+'万'],['项目税前利润',r=>`<span class="${signClass(r.first.netProfit)}">${wan(r.first.netProfit)}万</span>`],['利润率',r=>pct(r.first.profitMargin)],['官网／Amazon／TikTok',r=>balancedCounts(r.first.channels.map(c=>c.qty)).map(n=>num(n)).join(' / ')],['官网非广告比例',r=>num(r.state.organicWeb)+'%'],['退货损失 官网／AMZ／TT',r=>[r.state.returnWeb,r.state.returnAmazon,r.state.returnTikTok].map(x=>num(x,1)+'%').join(' / ')],['常态月发货目标',r=>num(r.state.monthQty)+'台'],['常态月结余',r=>`<span class="${signClass(r.month.netProfit)}">${wan(r.month.netProfit)}万</span>`],['首发亏损回收',recoveryText]];
+    $('comparison-table').innerHTML=`<div class="table-wrap"><table class="data-table comparison-table"><thead><tr><th>同口径比较</th>${columns.map((c,i)=>`<th class="${i===1?'current-column':''}">${esc(c.name)}</th>`).join('')}</tr></thead><tbody>${definitions.map(([title,get])=>`<tr><td>${title}</td>${columns.map((c,i)=>`<td class="${i===1?'current-column':''}">${get(c.r)}</td>`).join('')}</tr>`).join('')}</tbody></table></div><p class="panel-footnote">首发对照采用相同台数、KOL10万美元、原ROAS、官网非广告35%、未转移渠道及原退货损失率。月度对照使用本页默认置换费用与其各自投放效率；保存方案按各自完整参数计算。</p>`;
+    $('saved-scenarios').innerHTML=saved.length?`<div class="saved-list">${saved.map(x=>{const sr=M.compute(x.state);return `<div class="saved-item"><div><h3>${esc(x.name)}</h3><p>${num(x.state.qty)}台 · 项目利润 <span class="${signClass(sr.first.netProfit)}">${wan(sr.first.netProfit)}万</span> · ${esc(new Date(x.updatedAt).toLocaleString('zh-CN',{month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit'}))}</p></div><div class="saved-item-actions"><label class="compare-check"><input type="checkbox" data-compare-id="${esc(x.id)}" ${selected.includes(x.id)?'checked':''}>加入对比</label><button type="button" data-load-id="${esc(x.id)}">载入</button><button type="button" class="delete-scenario" data-delete-id="${esc(x.id)}">删除</button></div></div>`;}).join('')}</div>`:'<div class="empty-state"><span class="empty-icon">▤</span><h3>保存第一份方案</h3><p>调整好参数后点击“保存方案”，随时载入或比较。</p></div>';
+  }
+  function renderBasis(r){
+    const sources=[['Meta电子类广告基准','https://www.triplewhale.com/blog/facebook-ads-benchmarks','原参考ROAS 1.94'],['Google电子类广告基准','https://www.triplewhale.com/blog/google-ads-benchmarks','原参考ROAS 2.91'],['Amazon电子类广告基准','https://www.triplewhale.com/blog/amazon-benchmarks','原参考ROAS 3.93'],['TikTok电子类广告基准','https://www.triplewhale.com/blog/tiktok-benchmarks','原参考ROAS 1.98'],['Amazon美国站官方费表','https://sell.amazon.com/pricing','类目实际费率以ASIN费用预览为准'],['美通社传播效果衡量','https://www.prnewswire.com/resources/articles/how-to-measure-press-release-performance/','发布服务与实际阅读分别统计']];
+    $('basis-content').innerHTML=`<div class="basis-content"><h3>本页的范围</h3><p>这是按手动输入条件即时重算的经营预测，不是广告平台实时业绩。发货目标按付款并发货台数，退货单列损失。样机不从待售库存扣减。所有美元费用按当前汇率折算人民币。</p><p>项目税前利润已扣商品、头程、尾程、平台费、退货损失、营销预留、广告、适用佣金及首发KOL／PR；未计总部费用、融资、所得税及另列TVC。利润回收期不等同库存采购现金回笼。</p><h3>主要计算关系</h3><ol><li>各阶段GMV＝阶段目标台数×阶段售价×汇率；只有正式开售阶段参与TikTok向Amazon的台数转移。</li><li>渠道广告支撑GMV＝渠道GMV×（1－该渠道非当期广告成交比例）。官网广告GMV再按Meta与Google的比例拆分。</li><li>广告费＝该媒体广告支撑GMV÷最终ROAS；综合ROAS＝全部广告支撑GMV÷全部广告费。</li><li>TikTok佣金＝扣除原表退货损失后的成交额×适用佣金率×付佣覆盖率。自然与广告订单适用各自费率，不叠加。</li><li>其他预留＝GMV×预留比例。勾选“优先覆盖”时，样机、寄样、执行及包外授权仅追加超出预留的差额；KOL包内权益不重复列支。</li><li>首发亏损回收期＝首发待回收亏损÷常态项目月结余；月结余非正时不提供虚假回收期。首发已盈利时显示已保本。</li></ol><h3>当前关键前提</h3><p>KOL <code>$${num(state.kolUSD)}</code>；美通社 <code>¥${num(state.prWireCNY,2)}</code>；Kest <code>$${num(state.prTargetUSD)}</code>；TVC <code>0元</code>。官网／Amazon／TikTok非广告比例为 <code>${state.organicWeb}% / ${state.organicAmazon}% / ${state.organicTikTok}%</code>，均需上线数据验证。</p><p>Amazon平台费当前按 <code>${num(state.feeAmazon,1)}%</code>测算。8%仅为待核实情景，不能自动认定本品适用。平台返还、品牌激励及未经验证的长尾收益均未自动计入。</p><h3>预算文件与行业参考</h3><p>成本与阶段结构依据项目《Moviwi_营销预算与回收_20261016.xlsx》，首发KOL已按10万美元更新。PR沿用美通社B套餐与Kest五媒体报价。行业ROAS来自以下参考，统计期为2025年8月至2026年7月，客户样本不等于本品冷启动效果。</p>${sources.map(x=>`<div class="source-row"><a href="${x[1]}" target="_blank" rel="noopener noreferrer">${x[0]} ↗</a><span>${x[2]}</span></div>`).join('')}<h3>数据保存</h3><p>参数与命名方案保存在当前浏览器；不会自动跨设备同步。可以导出JSON备份，或用CSV和打印模式留存当前结果。导入会替换当前参数，已保存方案保留。</p></div>`;
+    let summary=$('print-summary');if(!summary){summary=document.createElement('section');summary.id='print-summary';summary.className='print-summary';$('view-channels').append(summary);}
+    summary.innerHTML=`<b>方案 ${esc(name)}</b> · ${num(state.qty)}台 · 汇率${state.fx} · KOL $${num(state.kolUSD)} · PR ¥${num(r.first.fixed.pr,2)} · TVC另列<br>非广告占比 官网${state.organicWeb}%／Amazon${state.organicAmazon}%／TikTok${state.organicTikTok}%；退货损失 ${state.returnWeb}%／${state.returnAmazon}%／${state.returnTikTok}%；Amazon平台费 ${state.feeAmazon}%。<br>正常运营：每月${num(state.monthQty)}台，均价$${state.monthPrice}，月结余${wan(r.month.netProfit)}万元。首发亏损回收：${recoveryText(r)}。项目税前贡献口径，未含总部、融资、所得税及TVC。${esc(new Date().toLocaleString('zh-CN'))}`;
+  }
+  function refresh(){
+    const r=M.compute(state);
+    document.querySelectorAll('.invalid').forEach(x=>x.classList.remove('invalid'));
+    if(!r.ok){$('validation-banner').hidden=false;$('validation-banner').innerHTML=`<strong>请检查参数，结果暂保留上一组有效值：</strong>${esc([...new Set(r.errors.map(e=>e.message))].join('；'))}`;
+      r.errors.forEach(e=>document.querySelectorAll(`[data-field="${e.key}"]`).forEach(x=>x.classList.add('invalid')));
+      $('results').classList.add('results-invalid');$('metrics').classList.add('results-invalid');syncControls();return;
+    }
+    state=r.state;lastResult=r;$('validation-banner').hidden=true;$('results').classList.remove('results-invalid');$('metrics').classList.remove('results-invalid');
+    $('notice-banner').hidden=!(r.warnings.length||state.feeAmazon===8);
+    $('notice-banner').textContent=[...r.warnings,...(state.feeAmazon===8?['Amazon按8%进行情景测算，适用类目及其他服务费仍需费用预览核实。']:[])].join(' ');
+    renderMetrics(r);renderBudget(r.first);renderWaterfall(r.first);renderChannelChart(r.first);renderRecovery(r);renderMonthly(r);renderPhases(r.first);renderAdPerformance(r);renderChannelDetails(r);renderMedia(r);renderComparison(r);renderBasis(r);syncControls();persist();
+  }
+  function setView(next){view=next;document.querySelectorAll('[data-view]').forEach(el=>{el.classList.toggle('active',el.dataset.view===view);if(el.dataset.view===view)el.setAttribute('aria-current','page');else el.removeAttribute('aria-current');});document.querySelectorAll('.view-panel').forEach(el=>el.hidden=el.id!=='view-'+view);}
+  function setInputTab(next){inputTab=next;renderControls();$('controls').scrollTop=0;}
+  function openSave(){if(M.validate(state).length){toast('请先修正无效参数');return;}$('save-name').value=name||'当前方案';$('save-dialog').showModal();$('save-name').focus();$('save-name').select();}
+  function download(filename,contents,mime){const blob=new Blob([contents],{type:mime}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=filename;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),3000);$('export-menu').open=false;}
+  function validExport(){if(M.validate(state).length){toast('请先修正无效参数，再导出');return false;}return true;}
+  function exportJSON(){if(!validExport())return;download('Moviwi_参数_'+state.qty+'台_'+new Date().toISOString().slice(0,10)+'.json',JSON.stringify({app:'moviwi-profit-planner',schemaVersion:1,name,exportedAt:new Date().toISOString(),settings:state},null,2),'application/json;charset=utf-8');toast('当前参数已导出，可用作跨设备备份');}
+  function exportCSV(){
+    if(!validExport())return;
+    const r=lastResult,a=r.first,rows=[['Moviwi 营销经营测算',name],['导出时间',new Date().toLocaleString('zh-CN')],['口径','人民币；付款并发货；项目税前贡献；TVC另列'],[],['经营指标','人民币元'],['目标销量／台',state.qty],['目标GMV',a.gmv],['完整营销投入',a.marketingTotal],['全部经营成本',a.totalCost],['项目税前利润',a.netProfit],['利润率',a.profitMargin],['常态月发货／台',state.monthQty],['常态月结余',r.month.netProfit],['亏损回收月数',r.recovery.months===null?'当前无法回收':r.recovery.months],['后续回收销量／台',r.recovery.units===null?'当前无法回收':r.recovery.units],[],['渠道','发货台数','GMV','采购','头程','尾程','平台费','退货损失','其他预留','广告','佣金','分摊前贡献','分摊共同费用','分摊后利润']];
+    a.channels.forEach(c=>rows.push([c.name,c.qty,c.gmv,c.purchase,c.head,c.tail,c.platform,c.returnLoss,c.reserve,c.ad,c.commission,c.contribution,c.allocatedCommon,c.profitAfterAllocation]));
+    rows.push([],['共同费用','人民币元'],['KOL',a.fixed.kol],['PR',a.fixed.pr],['其他一次性',a.fixed.other],['执行明细超出预留',a.coverage.extra],[],['媒体','最终ROAS','归因GMV','广告费','广告支撑台数','平均获客成本']);
+    a.media.forEach(m=>rows.push([m.name,m.roas,m.gmv,m.ad,m.qty,m.cpa===null?'—':m.cpa]));
+    rows.push([],['当前参数代码','当前输入值']);Object.entries(state).forEach(([k,v])=>rows.push([k,v]));
+    const cell=v=>{let text=typeof v==='number'?String(Number(v.toFixed(6))):String(v??'');if(typeof v==='string'&&/^[=+\-@\t\r]/.test(text))text="'"+text;return '"'+text.replaceAll('"','""')+'"';};
+    download('Moviwi_经营测算_'+state.qty+'台_'+new Date().toISOString().slice(0,10)+'.csv','\ufeff'+rows.map(row=>row.map(cell).join(',')).join('\r\n'),'text/csv;charset=utf-8');toast('数据表已导出，可直接用Excel打开');
+  }
+  document.addEventListener('input',event=>{
+    const el=event.target,key=el.dataset.key;
+    if(key&&Object.hasOwn(M.DEFAULTS,key)&&el.type!=='checkbox'){
+      state[key]=typeof M.DEFAULTS[key]==='string'?el.value:el.value===''?NaN:Number(el.value);refresh();
+    }
+    if(el.id==='scenario-name'){name=el.value.slice(0,60);if(lastResult)renderComparison(lastResult);persist();}
+  });
+  document.addEventListener('change',event=>{
+    const el=event.target;
+    if(el.type==='checkbox'&&el.dataset.key){state[el.dataset.key]=el.checked;renderControls();refresh();}
+    if(el.id==='ad-price'&&lastResult)renderAdPerformance(lastResult);
+    if(el.id==='allocation-mode'){state.allocationMode=el.value;refresh();}
+    if(el.dataset.compareId){const id=el.dataset.compareId;if(el.checked){if(selected.length>=2){el.checked=false;toast('最多再选两份保存方案进行比较');return;}selected.push(id);}else selected=selected.filter(x=>x!==id);renderComparison(lastResult);persist();}
+  });
+  document.addEventListener('click',event=>{
+    const el=event.target.closest('button');if(!el)return;
+    if(el.dataset.view){setView(el.dataset.view);return;}
+    if(el.dataset.inputTab){setInputTab(el.dataset.inputTab);return;}
+    if(el.dataset.preset){const kind=el.dataset.preset,value=Number(el.dataset.value);
+      if(kind==='qty')state.qty=value;if(kind==='monthlyQty')state.monthQty=value;
+      if(kind==='roas')Object.keys(M.BASE_ROAS).forEach(k=>state['roas'+k]=M.BASE_ROAS[k]*value);
+      if(kind==='returns')[state.returnWeb,state.returnAmazon,state.returnTikTok]=[8,15,15].map(x=>Math.max(0,x-value));
+      if(kind==='amzFee')state.feeAmazon=value;refresh();return;
+    }
+    if(el.dataset.loadId){const item=saved.find(x=>x.id===el.dataset.loadId);if(item){state=M.importState(item.state);name=item.name;$('scenario-name').value=name;renderControls();refresh();toast('已载入：'+name);}return;}
+    if(el.dataset.deleteId){const previous=M.clone(saved),oldSelected=[...selected];saved=saved.filter(x=>x.id!==el.dataset.deleteId);selected=selected.filter(x=>x!==el.dataset.deleteId);renderComparison(lastResult);persist();toast('方案已删除',()=>{saved=previous;selected=oldSelected;renderComparison(lastResult);persist();});return;}
+    switch(el.id){
+      case 'save-scenario':case 'save-scenario-second':openSave();break;
+      case 'cancel-save':$('save-dialog').close();break;
+      case 'reset-defaults':{const prev=M.clone(state),oldName=name;state=M.defaultState();name='当前优化方案';$('scenario-name').value=name;renderControls();refresh();toast('已恢复4,000台默认优化方案',()=>{state=prev;name=oldName;$('scenario-name').value=name;renderControls();refresh();});break;}
+      case 'report-toggle':{const active=document.body.classList.toggle('report-mode');el.textContent=active?'返回编辑':'汇报视图';$('scenario-name').readOnly=active;break;}
+      case 'export-json':exportJSON();break;
+      case 'export-csv':exportCSV();break;
+      case 'import-json':$('import-file').click();$('export-menu').open=false;break;
+      case 'print-report':if(validExport()){window.print();$('export-menu').open=false;}break;
+      case 'edit-monthly':setInputTab('monthly');if(innerWidth<=720)toggleMobile(true);break;
+      case 'edit-phases':setInputTab('cost');$('controls').scrollTop=$('controls').scrollHeight;if(innerWidth<=720)toggleMobile(true);break;
+      case 'mobile-inputs':toggleMobile(!$('sidebar').classList.contains('mobile-open'));break;
+      case 'close-inputs':toggleMobile(false);break;
+      case 'undo-action':if(undoAction){undoAction();undoAction=null;$('toast').hidden=true;}break;
+    }
+  });
+  $('save-form').addEventListener('submit',event=>{
+    event.preventDefault();if(!validExport())return;const title=$('save-name').value.trim().slice(0,60);if(!title)return;
+    const existing=saved.find(x=>x.name===title);const item={id:existing?.id||globalThis.crypto?.randomUUID?.()||'scenario-'+Date.now(),name:title,updatedAt:new Date().toISOString(),state:M.clone(state)};
+    saved=[item,...saved.filter(x=>x.id!==item.id)].slice(0,30);selected=selected.filter(id=>saved.some(x=>x.id===id));name=title;$('scenario-name').value=name;renderComparison(lastResult);persist();$('save-dialog').close();toast(existing?'同名方案已更新':'方案已保存');
+  });
+  $('import-file').addEventListener('change',async event=>{
+    const file=event.target.files?.[0];if(!file)return;
+    try{if(file.size>256*1024)throw new Error('参数文件过大，请使用本页导出的JSON');const raw=JSON.parse(await file.text());if(raw.app!=='moviwi-profit-planner'||raw.schemaVersion!==1||!raw.settings)throw new Error('请导入本页导出的参数JSON文件');
+      const next=M.importState(raw.settings),prev=M.clone(state),prevName=name;state=next;name=typeof raw.name==='string'?raw.name.slice(0,60):'导入的方案';$('scenario-name').value=name;renderControls();refresh();toast('参数导入成功，已保存方案保留',()=>{state=prev;name=prevName;$('scenario-name').value=name;renderControls();refresh();});
+    }catch(error){toast('导入失败：'+error.message);}finally{event.target.value='';}
+  });
+  const scrim=document.createElement('div');scrim.className='mobile-scrim';scrim.setAttribute('aria-hidden','true');document.body.append(scrim);
+  function toggleMobile(open){$('sidebar').classList.toggle('mobile-open',open);scrim.classList.toggle('visible',open);$('mobile-inputs').textContent=open?'关闭参数':'调整参数';}
+  scrim.addEventListener('click',()=>toggleMobile(false));document.addEventListener('keydown',e=>{if(e.key==='Escape')toggleMobile(false);});
+  window.addEventListener('beforeprint',()=>{if(lastResult)renderBasis(lastResult);});
+  $('scenario-name').value=name;renderControls();setView(view);refresh();
+})();
+</script></body>
+</html>

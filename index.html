@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="description" content="Moviwi 首发营销投入、渠道利润及后续经营回收测算。调整参数，即时比较方案。">
+  <title>Moviwi · 营销经营测算</title>
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg">
+  <link rel="stylesheet" href="./styles.css">
+  <script src="./model.js" defer></script>
+  <script src="./app.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="./" aria-label="Moviwi 经营测算首页"><span class="brand-mark">m<span></span></span><span class="brand-name">moviwi<span class="brand-divider"></span><span class="brand-product">经营测算</span></span></a>
+    <div class="top-actions">
+      <span class="save-status" id="save-status"><span class="status-dot"></span>本机自动保存</span>
+      <button class="button button-quiet" id="report-toggle" type="button">汇报视图</button>
+      <details class="export-menu" id="export-menu"><summary class="button button-quiet">导出 <span aria-hidden="true">⌄</span></summary><div class="menu-popover"><button type="button" id="export-csv">数据表 CSV</button><button type="button" id="export-json">参数备份 JSON</button><button type="button" id="import-json">导入参数 JSON</button><button type="button" id="print-report">打印 / 保存 PDF</button><a href="./offline.html" id="download-offline" download="Moviwi_经营测算_离线版.html">下载离线页面</a></div></details>
+      <button class="button button-primary" id="save-scenario" type="button"><span aria-hidden="true">＋</span> 保存方案</button>
+    </div>
+  </header>
+  <div class="workspace">
+    <aside class="sidebar" id="sidebar" aria-label="测算参数">
+      <div class="sidebar-heading"><div><span class="eyebrow">MODEL INPUTS</span><h2>调整你的方案</h2></div><span class="live-badge"><i></i>即时测算</span><button class="sidebar-close" type="button" id="close-inputs" aria-label="关闭参数面板">×</button></div>
+      <div class="input-tabs" role="tablist" aria-label="参数分组"><button role="tab" aria-selected="true" data-input-tab="main">主要参数</button><button role="tab" aria-selected="false" data-input-tab="cost">成本费用</button><button role="tab" aria-selected="false" data-input-tab="monthly">后续运营</button></div>
+      <div class="controls-scroll" id="controls"></div>
+      <div class="sidebar-footer"><button id="reset-defaults" type="button">↺ 恢复默认方案</button><span>金额统一折算人民币</span></div>
+    </aside>
+    <main id="main" class="main">
+      <section class="page-heading">
+        <div><div class="eyebrow">MOVIWI / LAUNCH ECONOMICS</div><h1>首发营销与利润测算</h1><p>首发营销、渠道贡献与经营回收，一起测算。</p></div>
+        <button type="button" class="button button-mobile" id="mobile-inputs">调整参数</button>
+      </section>
+      <div class="scenario-bar"><div class="scenario-ident"><span class="scenario-icon" aria-hidden="true">◈</span><input id="scenario-name" aria-label="当前方案名称" maxlength="60" value="当前优化方案"><span class="badge badge-blue">方案测算</span></div><div class="scenario-meta" id="scenario-meta"></div></div>
+      <div class="validation-banner" id="validation-banner" role="alert" hidden></div>
+      <div class="notice-banner" id="notice-banner" role="status" hidden></div>
+      <section class="metrics" id="metrics" aria-label="经营核心指标"></section>
+      <nav class="view-tabs" aria-label="结果视图"><button class="active" data-view="overview" aria-current="page">经营总览</button><button data-view="channels">广告与渠道</button><button data-view="compare">方案对比 <span id="scenario-count">0</span></button><button data-view="basis">计算依据</button></nav>
+      <div id="results">
+        <section class="view-panel" id="view-overview" aria-label="经营总览">
+          <div class="chart-grid">
+            <article class="panel"><div class="panel-heading"><div><h2>营销费用花在哪里</h2><p>广告、品牌合作及其他营销支出</p></div><span class="unit-label">人民币 · 万元</span></div><div id="budget-chart" class="budget-chart"></div></article>
+            <article class="panel"><div class="panel-heading"><div><h2>从销售额到利润</h2><p>完整扣除本批经营与营销成本</p></div><span class="unit-label">万元</span></div><div id="waterfall-chart" class="chart-frame"></div></article>
+            <article class="panel"><div class="panel-heading"><div><h2>哪个渠道带来贡献</h2><p>已扣广告、佣金及变动成本，未分摊共同费用</p></div></div><div id="channel-chart" class="chart-frame"></div></article>
+            <article class="panel"><div class="panel-heading"><div><h2>后续经营回收曲线</h2><p id="recovery-subtitle">首发结束后，以常态月经营贡献回收亏损</p></div><button type="button" class="text-button" id="edit-monthly">调整月度参数 ↗</button></div><div id="recovery-chart" class="chart-frame"></div></article>
+          </div>
+          <article class="panel operating-panel"><div class="panel-heading"><div><h2>回本，取决于怎样的日常经营</h2><p>首发目标与后续月销量独立计算；回收期为利润覆盖期。</p></div><span class="badge" id="monthly-mix-badge"></span></div><div class="operating-stats" id="operating-stats"></div><div class="coverage-row" id="coverage-row"></div></article>
+          <article class="panel phases-panel"><div class="panel-heading"><div><h2>阶段价格与销售结构</h2><p>官网预售从11月10日开始，11月20日正式开售并发货。</p></div><button type="button" class="text-button" id="edit-phases">调整阶段 ↗</button></div><div id="phase-summary"></div></article>
+        </section>
+        <section class="view-panel" id="view-channels" aria-label="广告与渠道" hidden>
+          <article class="panel"><div class="panel-heading"><div><h2>广告订单，能留下多少贡献</h2><p>单台口径含2%预留及适用广告佣金，未分摊KOL、PR等共同费用。</p></div><label class="inline-select">测算售价 <select id="ad-price" aria-label="广告表现测算售价"><option value="319">活动价 $319</option><option value="339">常态价 $339</option><option value="weighted">各渠道首发加权价</option></select></label></div><div id="ad-performance"></div><p class="panel-footnote">ROAS的分子沿用发货GMV；退货另计损失。这里展示输入条件下的预计表现，实际执行需用去重订单及实际成本校准。</p></article>
+          <article class="panel"><div class="panel-heading"><div><h2>渠道费用与利润</h2><p>先看渠道直接贡献，再按需要分摊共同费用。</p></div><label class="inline-select">共同费用分摊 <select id="allocation-mode" aria-label="共同费用分摊方式"><option value="none">共同费用单列</option><option value="gmv">按渠道GMV</option><option value="units">按渠道销量</option><option value="custom">自定义比例</option></select></label></div><div id="custom-allocation" hidden></div><div id="channel-details"></div></article>
+          <article class="panel"><div class="panel-heading"><div><h2>投放预算拆分</h2><p>官网广告按归因GMV分配至Meta和Google，综合ROAS按金额加权。</p></div></div><div id="media-details"></div></article>
+        </section>
+        <section class="view-panel" id="view-compare" aria-label="方案对比" hidden>
+          <article class="panel"><div class="panel-heading"><div><h2>把不同选择放在一起看</h2><p>当前方案始终与同销量的原经营假设对照，可再选最多两份已保存方案。</p></div><button class="button button-primary" type="button" id="save-scenario-second">保存当前方案</button></div><div id="comparison-table"></div></article>
+          <article class="panel"><div class="panel-heading"><div><h2>已保存的方案</h2><p>保存在当前浏览器。跨设备使用时，可导出并导入JSON参数。</p></div></div><div id="saved-scenarios"></div></article>
+        </section>
+        <section class="view-panel" id="view-basis" aria-label="计算依据" hidden>
+          <article class="panel"><div class="panel-heading"><div><h2>读懂这份测算</h2><p>所有结果来自当前参数；参考值和待核实费用分别列明。</p></div><span class="badge">口径更新 2026.10.19</span></div><div id="basis-content"></div></article>
+        </section>
+      </div>
+      <footer class="main-footer"><span>Moviwi · 经营决策工作台</span><span>项目税前贡献口径 · TVC另列 · 参数保存在本机浏览器</span></footer>
+    </main>
+  </div>
+  <dialog id="save-dialog"><form id="save-form"><span class="eyebrow">SAVE SCENARIO</span><h2>保存当前方案</h2><p>保留这组参数，之后可以载入或与其他方案比较。</p><label for="save-name">方案名称</label><input id="save-name" maxlength="60" required placeholder="例如：4千台 退货改善1个百分点"><div class="dialog-actions"><button type="button" class="button button-quiet" id="cancel-save">取消</button><button type="submit" class="button button-primary">保存方案</button></div></form></dialog>
+  <input type="file" id="import-file" accept=".json,application/json" hidden>
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+  <noscript><p class="noscript">请启用JavaScript以使用交互测算。所有计算均在你的浏览器内完成。</p></noscript>
+</body>
+</html>
